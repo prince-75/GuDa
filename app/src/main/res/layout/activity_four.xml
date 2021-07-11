@@ -2,88 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gudamine">
+    >
+<!--    android:background="@drawable/gudamine"-->
     <!--    android:orientation="horizontal"-->
 
-    <!--TextView
+    <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_cox0ntent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="This is TextView"
-        android:textColor="#22ff02"
-        android:textSize="28dp"-->
+        android:text="我的"
+        android:textColor="#9932"
+        android:textSize="28dp"/>
 
     <!--    下方四个导航栏-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:id="@+id/button1"
-        android:text="运动"
-        android:textColor="#23238E"
-        android:textSize="20dp"
-        />
-    <!--    android:layout_weight="1"
-            android:layout_gravity="bottom"-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@id/button1"
-        android:layout_toRightOf="@id/button1"
-        android:id="@+id/button2"
-        android:text="发现"
-        android:textColor="#23238E"
-        android:textSize="20dp"
-        />
-    <!--    android:layout_gravity="bottom"
-            android:layout_weight="1"-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@id/button2"
-        android:layout_toRightOf="@id/button2"
-        android:id="@+id/button3"
-        android:text="数据"
-        android:textColor="#23238E"
-        android:textSize="20dp"
-        />
-    <!--    android:layout_gravity="bottom"
-            android:layout_weight="1"-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@id/button3"
-        android:layout_toRightOf="@id/button3"
-        android:id="@+id/button4"
-        android:text="我的"
-        android:textColor="#23238E"
-        android:textSize="20dp"
-        />
-    <!--    android:layout_gravity="bottom"
-            android:layout_weight="1"-->
-    <!--1.android:textAllCaps=“flase-禁用自动转换大写
-        2.去MainActivity 中增加事件监听器-->
+    <include layout="@layout/bottom_inferface"/>
 
-
-    <!--返回、编辑模块-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="Back"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
-    <!--
-            android:layout_weight="1"-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,15 +30,15 @@
         android:layout_alignParentTop="true"/>
     <!--
             android:layout_weight="1"-->
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Datasets"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"/>
+<!--    <TextView-->
+<!--        android:id="@+id/text_view"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="Datasets"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_alignParentTop="true"/>-->
     <!--
             android:layout_weight="1"-->
 

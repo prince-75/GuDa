@@ -3,6 +3,7 @@ package com.example.guda;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {//implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //隐藏系统自带标题栏
+        getSupportActionBar().hide();
         //导航栏按钮
         Button button2 = (Button)findViewById(R.id.button2);
         Button button3 = (Button)findViewById(R.id.button3);

@@ -11,6 +11,8 @@ public class FourActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_four);
+        //隐藏系统自带标题栏
+        getSupportActionBar().hide();
         //导航栏按钮
         Button button2 = (Button)findViewById(R.id.button1);
         Button button3 = (Button)findViewById(R.id.button2);

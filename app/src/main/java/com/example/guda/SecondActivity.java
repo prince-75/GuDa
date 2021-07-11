@@ -14,13 +14,14 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
+        //隐藏系统自带标题栏
+        getSupportActionBar().hide();
         Button button1 = (Button)findViewById(R.id.button_intent);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://www.baidu.com"));
+                intent.setData(Uri.parse("https://cn.bing.com/"));
                 startActivity(intent);
             }
         });
