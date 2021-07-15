@@ -16,9 +16,9 @@
             android:textColor="#23238E"
             android:textSize="20dp"
             />
-    <!--    android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"-->
+        <!--    android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"-->
         <!--    android:layout_weight="1"
                 android:layout_gravity="bottom"-->
         <Button
@@ -31,10 +31,10 @@
             android:textColor="#23238E"
             android:textSize="20dp"
             />
-    <!--    android:layout_alignParentBottom="true"
-            android:layout_alignTop="@id/button1"
-            android:layout_toRightOf="@id/button1"-->
-    <!--    android:background="@android:color/transparent"-->
+        <!--    android:layout_alignParentBottom="true"
+                android:layout_alignTop="@id/button1"
+                android:layout_toRightOf="@id/button1"-->
+        <!--    android:background="@android:color/transparent"-->
         <!---->
         <Button
             android:layout_width="wrap_content"
@@ -46,9 +46,9 @@
             android:textColor="#23238E"
             android:textSize="20dp"
             />
-    <!--    android:layout_alignParentBottom="true"
-            android:layout_alignTop="@id/button2"
-            android:layout_toRightOf="@id/button2"-->
+        <!--    android:layout_alignParentBottom="true"
+                android:layout_alignTop="@id/button2"
+                android:layout_toRightOf="@id/button2"-->
         <!--    -->
         <Button
             android:layout_width="wrap_content"
@@ -60,24 +60,13 @@
             android:textColor="#23238E"
             android:textSize="20dp"
             />
-    <!--    android:layout_alignParentBottom="true"
-            android:layout_alignTop="@id/button3"
-            android:layout_toRightOf="@id/button3"-->
+        <!--    android:layout_alignParentBottom="true"
+                android:layout_alignTop="@id/button3"
+                android:layout_toRightOf="@id/button3"-->
     </LinearLayout>
 
 
-    <!--    返回按钮-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="Back"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
-    <!--android:layout_weight="1"-->
+
 
 
 
