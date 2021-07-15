@@ -31,36 +31,24 @@
         android:layout_alignParentTop="true"/>
 
 <!--调用本机摄像头-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/take_photo"
-            android:text="Take Photo"
-            android:layout_gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/picture"
-            android:layout_gravity="center_horizontal"/>
+<!--    <LinearLayout-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/take_photo"-->
+<!--            android:text="Take Photo"/>-->
+<!--&lt;!&ndash;        android:layout_gravity="center_vertical"&ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/picture"-->
+<!--            android:layout_gravity="center_horizontal"/>-->
 
-    </LinearLayout>
-    <!--
-            android:layout_weight="1"-->
-<!--    <TextView-->
-<!--        android:id="@+id/text_view"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="Datasets"-->
-<!--        android:textColor="#fff"-->
-<!--        android:textSize="20dp"-->
-<!--        android:layout_alignParentTop="true"/>-->
-    <!--
-            android:layout_weight="1"-->
+<!--    </LinearLayout>-->
+
 
 
 
@@ -91,8 +79,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar" -->
 
-    <!--弹出对话框
-    去MainActivity-->
+    <!--实现弹出对话框在MainActivity-->
 
 
 </RelativeLayout>
