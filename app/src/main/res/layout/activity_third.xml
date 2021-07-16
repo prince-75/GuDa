@@ -21,9 +21,9 @@
     <!--
             android:layout_weight="1"-->
     <Button
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edit"
         android:text="数据查看"
         android:textColor="#fff"
         android:textSize="20dp"

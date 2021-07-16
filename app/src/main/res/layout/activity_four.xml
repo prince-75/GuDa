@@ -19,9 +19,9 @@
     <include layout="@layout/bottom_inferface"/>
 
     <Button
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edit"
         android:text="信息"
         android:textColor="#fff"
         android:textSize="20dp"

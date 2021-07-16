@@ -19,9 +19,9 @@
 
 
     <Button
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edit"
         android:text="编辑"
         android:textColor="#fff"
         android:textSize="20dp"
@@ -45,10 +45,10 @@
 
 <!--隐式Intent-->
     <Button
+        android:id="@+id/button_intent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/button_intent"
         android:text="必应搜索"
         />
 
