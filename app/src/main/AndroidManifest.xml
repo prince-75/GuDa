@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.guda">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GuDa">
-        <activity android:name=".BottomInterface"></activity>
+        <activity android:name=".PhotoBitmapUtils"/>
+        <activity android:name=".BottomInterface" />
         <activity android:name=".TitleLayout" />
         <activity android:name=".TitleActivity" />
         <activity android:name=".FourActivity" />
@@ -24,11 +27,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="com.example.cameraalbumtest.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.guda.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+<!--            android:authorities="com.example.cameraalbumtest.fileprovider"-->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
