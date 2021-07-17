@@ -26,9 +26,9 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {//implements View.OnClickListener
       //调用摄像头
-//    public static final int TAKE_PHOTO=1;
-//    private ImageView picture;
-//    private Uri imageUri;
+    public static final int TAKE_PHOTO=1;
+    private ImageView picture;
+    private Uri imageUri;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -60,7 +60,42 @@ public class MainActivity extends AppCompatActivity {//implements View.OnClickLi
                 startActivity(intent);
             }
         });
-        //调用摄像头
+//        调用摄像头
+        Button takephoto = findViewById(R.id.take_photo);
+        picture = findViewById(R.id.picture);
+        takephoto.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
+                try//判断图片是否存在，存在则删除在创建，不存在则直接创建
+                {
+                    if (outputImage.exists()) {
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //判断运行设备的系统版本是否低于Android7.0
+                if (Build.VERSION.SDK_INT >= 24)
+                {
+                    imageUri = FileProvider.getUriForFile(MainActivity.this,
+                            "com.example.cameraalbumtest.fileprovider", outputImage);
+
+                } else {
+                    imageUri = Uri.fromFile(outputImage);
+                }
+                //使用隐示的Intent，调用摄像头，并把它存储
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, TAKE_PHOTO);
+                //调用会返回结果的开启方式，返回成功的话，则把它显示出来
+            }
+        });
+
+
+
+
+
 //        Button takePhoto=(Button) findViewById(R.id.take_photo);
 //        picture = (ImageView) findViewById(R.id.picture);
         //注册button事件并且写摄像头逻辑
@@ -93,9 +128,29 @@ public class MainActivity extends AppCompatActivity {//implements View.OnClickLi
 //                startActivityForResult(intent,TAKE_PHOTO);//启动相机程序，结果返回到onActiviityResult()
 //            }
 //        });
-     }
+    }
 
      //储存相机程序返回的结果
+     protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+         switch (requestCode) {
+             case TAKE_PHOTO:
+                 if (resultCode == RESULT_OK) {
+                     try {
+                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                         picture.setImageBitmap(bitmap);
+                         //将图片解析成Bitmap对象，并把它显现出来
+                     } catch (FileNotFoundException e) {
+                         e.printStackTrace();
+                     }
+                 }
+                 break;
+             default:
+                 break;
+         }
+     }
+
+
+
 //    protected void onActiviityResult(int requestCode, int resultCode,Intent data){
 //        switch(requestCode){
 //            case TAKE_PHOTO:

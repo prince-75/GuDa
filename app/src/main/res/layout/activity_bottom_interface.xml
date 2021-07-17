@@ -65,9 +65,4 @@
                 android:layout_toRightOf="@id/button3"-->
     </LinearLayout>
 
-
-
-
-
-
 </RelativeLayout>
