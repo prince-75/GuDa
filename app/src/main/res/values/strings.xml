@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">GuDa</string>
+    <string name="wlan_enabled">服务已开启</string>
+    <string name="pls_check_network_state">请确保连接设备在同一个 WI-FI 下，\n或连到此设备的热点上</string>
+    <string name="the_android_address">本设备的地址为</string>
+    <string name="disappear">收起</string>
+    <string name="copy_network">复制地址</string>
+    <string name="no_program_open_it">未安装可以打开此文件的应用</string>
+    <string name="ok">确定</string>
+    <string name="http_address">http://%1$s:%2$d</string>
+    <string name="copy_toast">复制成功</string>
+
 </resources>
