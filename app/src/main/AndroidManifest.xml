@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.guda">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuDa">
 
-        <activity android:name=".PhotoBitmapUtils"/>
-        <activity android:name=".BottomInterface" />
-        <activity android:name=".TitleLayout" />
+        <activity android:name=".PhotoBitmapUtils"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".TitleLayout"
+            tools:ignore="Instantiatable" />
         <activity android:name=".FourActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".SecondActivity" />
