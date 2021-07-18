@@ -36,6 +36,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private static final int MY_PERMISSION_LIST = 3;
     private static final int MY_PERMISSION_ALBUM = 4;
     private static final int MY_PERMISSION_CAMERA = 5;
+    private static final int MY_PERMISSION_VEDIO = 6;
 
     private Button chooseAlbumBtn;
     private Button takePhotoBtn;
@@ -126,7 +127,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                     ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                     Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.CAMERA}, MY_PERMISSION_CAMERA);
+                                    Manifest.permission.CAMERA}, MY_PERMISSION_VEDIO);
                 } else {
                     takeVideo(); //打开相机录像
                 }
@@ -201,6 +202,9 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                     break;
                 case MY_PERMISSION_CAMERA:
                     takeCamera(); //打开摄像头拍照
+                    break;
+                case MY_PERMISSION_VEDIO:
+                    takeVideo(); //打开相机录像
                     break;
                 default:
                     break;
