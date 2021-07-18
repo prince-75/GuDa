@@ -26,13 +26,15 @@ public class SecondActivity extends AppCompatActivity implements Animator.Animat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        //隐藏系统自带标题栏
+        getSupportActionBar().hide();
         //绑定
         ButterKnife.bind(this);
         //导航栏按钮
-        Button button2 = (Button)findViewById(R.id.button1);
+        Button button1 = (Button)findViewById(R.id.button1);
         Button button3 = (Button)findViewById(R.id.button3);
         Button button4 = (Button)findViewById(R.id.button4);
-        button2.setOnClickListener(new View.OnClickListener(){
+        button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(SecondActivity.this,MainActivity.class);

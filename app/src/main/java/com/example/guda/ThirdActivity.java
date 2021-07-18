@@ -52,17 +52,17 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
         //导航栏按钮
-        Button button2 = (Button)findViewById(R.id.button1);
-        Button button3 = (Button)findViewById(R.id.button3);
+        Button button1 = (Button)findViewById(R.id.button1);
+        Button button2 = (Button)findViewById(R.id.button2);
         Button button4 = (Button)findViewById(R.id.button4);
-        button2.setOnClickListener(new View.OnClickListener(){
+        button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ThirdActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
-        button3.setOnClickListener(new View.OnClickListener(){
+        button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ThirdActivity.this,SecondActivity.class);

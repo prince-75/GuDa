@@ -29,24 +29,24 @@ public class FourActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //导航栏按钮
-        Button button2 = (Button)findViewById(R.id.button1);
-        Button button3 = (Button)findViewById(R.id.button2);
-        Button button4 = (Button)findViewById(R.id.button3);
-        button2.setOnClickListener(new View.OnClickListener(){
+        Button button1 = (Button)findViewById(R.id.button1);
+        Button button2 = (Button)findViewById(R.id.button2);
+        Button button3 = (Button)findViewById(R.id.button3);
+        button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(FourActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
-        button3.setOnClickListener(new View.OnClickListener(){
+        button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(FourActivity.this,SecondActivity.class);
                 startActivity(intent);
             }
         });
-        button4.setOnClickListener(new View.OnClickListener(){
+        button3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
