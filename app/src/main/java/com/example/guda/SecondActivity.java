@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.guda.Network.PopupMenuDialog;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hwangjr.rxbus.RxBus;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SecondActivity extends AppCompatActivity implements Animator.AnimatorListener {
@@ -26,8 +27,7 @@ public class SecondActivity extends AppCompatActivity implements Animator.Animat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         //绑定
-        ButterKnife.bind(this);
-
+        RxBus.get().register(this);
         //导航栏按钮
         Button button2 = (Button)findViewById(R.id.button1);
         Button button3 = (Button)findViewById(R.id.button3);
