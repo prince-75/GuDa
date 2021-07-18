@@ -1,3 +1,4 @@
+//用于实现标题栏按钮
 package com.example.guda;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,39 +38,7 @@ public class TitleLayout extends LinearLayout {
                         "但是我并没有想好要加什么功能",Toast.LENGTH_SHORT).show();
             }
         });
-//        //导航栏按钮
-//        Button button1 = (Button)findViewById(R.id.button1);
-//        Button button2 = (Button)findViewById(R.id.button2);
-//        Button button3 = (Button)findViewById(R.id.button3);
-//        Button button4 = (Button)findViewById(R.id.button4);
-//        button1.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-////                Intent intent = new Intent(BottomInterface.this,MainActivity.class);
-////                startActivity(intent);
-//            }
-//        });
-//        button2.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-////                Intent intent = new Intent(BottomInterface.this,SecondActivity.class);
-////                startActivity(intent);
-//            }
-//        });
-//        button3.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-////                Intent intent = new Intent(BottomInterface.this,ThirdActivity.class);
-////                startActivity(intent);
-//            }
-//        });
-//        button4.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-////                Intent intent = new Intent(BottomInterface.this,FourActivity.class);
-////                startActivity(intent);
-//            }
-//        });
+
     }
 }
 

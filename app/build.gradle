@@ -42,9 +42,11 @@ dependencies {
     implementation 'com.hwangjr.rxbus:rxbus:1.0.5'
     implementation 'com.koushikdutta.async:androidasync:2.+'
     implementation 'com.jakewharton:butterknife:10.2.3'
+    implementation 'androidx.wear:wear:1.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 }
 

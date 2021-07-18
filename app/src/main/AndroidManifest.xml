@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.guda">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -15,9 +19,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuDa">
 
-        <activity android:name=".PhotoBitmapUtils"
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="true" />
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <activity
+            android:name=".ButtomInterface"
+            android:label="@string/title_activity_buttom_interface">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PhotoBitmapUtils"
             tools:ignore="Instantiatable" />
-        <activity android:name=".TitleLayout"
+        <activity
+            android:name=".TitleLayout"
             tools:ignore="Instantiatable" />
         <activity android:name=".FourActivity" />
         <activity android:name=".ThirdActivity" />
@@ -29,7 +55,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".Network.WebService"></service>
+
+        <service android:name=".Network.WebService" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.guda.fileprovider"
@@ -39,7 +67,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

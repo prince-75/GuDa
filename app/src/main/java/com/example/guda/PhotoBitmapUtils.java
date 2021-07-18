@@ -1,3 +1,4 @@
+//一个用于实现调用摄像机的工具类
 package com.example.guda;
 
 import androidx.appcompat.app.AppCompatActivity;
