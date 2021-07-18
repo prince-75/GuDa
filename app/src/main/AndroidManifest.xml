@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GuDa">
-        <activity android:name=".BottomInterface"></activity>
+<!--        <activity android:name=".BottomInterface"></activity>-->
         <activity android:name=".TitleLayout" />
-        <activity android:name=".TitleActivity" />
+<!--        <activity android:name=".TitleActivity" />-->
         <activity android:name=".FourActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".SecondActivity" />
@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".Network.WebService"></service>
         <provider
             android:authorities="com.example.cameraalbumtest.fileprovider"
             android:name="androidx.core.content.FileProvider"
