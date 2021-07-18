@@ -70,6 +70,12 @@ public class WebService extends Service {
     }
 
     @Override
+    public void onCreate(){
+        startServer();
+        super.onCreate();
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
@@ -79,7 +85,7 @@ public class WebService extends Service {
         if (intent != null) {
             String action = intent.getAction();
             if (ACTION_START_WEB_SERVICE.equals(action)) {
-                startServer();
+//                startServer();
             } else if (ACTION_STOP_WEB_SERVICE.equals(action)) {
                 stopSelf();
             }
