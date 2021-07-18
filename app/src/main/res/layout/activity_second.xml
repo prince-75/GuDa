@@ -25,6 +25,7 @@
 
 
 
+
     <!--
             android:layout_weight="1"-->
 <!--    <TextView-->
@@ -41,14 +42,20 @@
 
 
 <!--隐式Intent-->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:id="@+id/button_intent"
-        android:text="必应搜索"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/button_intent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:text="必应搜索"-->
+<!--        />-->
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/botton_intent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
 
 
 

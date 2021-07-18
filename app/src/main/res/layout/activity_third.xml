@@ -24,6 +24,7 @@
         android:textColor="#9932"
         android:textSize="28dp"/>
 
+
     <!--摄像头组件-->
     <Button
         android:id="@+id/main_chooseAlbumBtn"

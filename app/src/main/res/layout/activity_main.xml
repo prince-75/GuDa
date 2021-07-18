@@ -29,6 +29,7 @@
 
 
 
+
 <!--调用本机摄像头-->
 <!--    <LinearLayout-->
 <!--        android:orientation="horizontal"-->
@@ -48,6 +49,7 @@
 <!--            android:layout_gravity="center_horizontal"/>-->
 
 <!--</LinearLayout>-->
+
 
 
 
