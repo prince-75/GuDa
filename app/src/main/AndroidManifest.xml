@@ -41,18 +41,23 @@
 <!--        </activity>-->
         <activity
             android:name=".PhotoBitmapUtils"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".TitleLayout"
-            tools:ignore="Instantiatable" />
-        <activity android:name=".FourActivity" />
-        <activity android:name=".ThirdActivity" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".MainActivity">
-<!--            intent-filter配置主活动（must have）-->
+            tools:ignore="Instantiatable"
+            android:launchMode="singleTask"/>
+        <activity android:name=".FourActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".ThirdActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".SecondActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
+<!--            intent-filter配置主活动-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
