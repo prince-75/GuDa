@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FourActivity extends AppCompatActivity {
+public class FourActivity extends BaseActivity {
     private List<Contents> contentsList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

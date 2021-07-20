@@ -27,7 +27,7 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.Calendar;
 
-public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
+public class ThirdActivity extends BaseActivity implements View.OnClickListener {
 
 
     private static final int ALBUM_REQUEST_CODE = 0;

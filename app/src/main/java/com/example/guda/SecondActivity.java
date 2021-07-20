@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SecondActivity extends AppCompatActivity implements Animator.AnimatorListener {
+public class SecondActivity extends BaseActivity implements Animator.AnimatorListener {
     @BindView(R.id.botton_intent)
     FloatingActionButton botton;
 
