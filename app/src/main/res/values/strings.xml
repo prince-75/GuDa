@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GuDa</string>
+    <string name="app_name">咕哒康复</string>
     <string name="wlan_enabled">服务已开启</string>
     <string name="pls_check_network_state">请确保连接设备在同一个 WI-FI 下，\n或连到此设备的热点上</string>
     <string name="the_android_address">本设备的地址为</string>
@@ -10,10 +10,5 @@
     <string name="http_address">http://%1$s:%2$d</string>
     <string name="copy_toast">复制成功</string>
     <string name="title_activity_buttom_interface">ButtomInterface</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
 
 </resources>

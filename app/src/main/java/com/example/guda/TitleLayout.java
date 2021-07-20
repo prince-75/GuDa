@@ -22,7 +22,7 @@ public class TitleLayout extends LinearLayout {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.activity_title_layout,this);
         Button titleBack = (Button)findViewById(R.id.back);
-        Button titleEdit = (Button)findViewById(R.id.edit);
+        //Button titleEdit = (Button)findViewById(R.id.edit);
         titleBack.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -31,13 +31,13 @@ public class TitleLayout extends LinearLayout {
             }
         });
 
-        titleEdit.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(getContext(),"你点击了一下edit按钮" +
-                        "但是我并没有想好要加什么功能",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        titleEdit.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Toast.makeText(getContext(),"你点击了一下edit按钮" +
+//                        "但是我并没有想好要加什么功能",Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 }

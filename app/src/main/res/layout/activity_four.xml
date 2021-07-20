@@ -6,14 +6,14 @@
 <!--    android:background="@drawable/gudamine"-->
     <!--    android:orientation="horizontal"-->
 
-<!--    自定义标题栏返回和编辑按钮-->
-    <com.example.guda.TitleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+<!--&lt;!&ndash;    自定义标题栏返回和编辑按钮&ndash;&gt;-->
+<!--    <com.example.guda.TitleLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
 
-<!--    自定义导航栏四个按钮-->
-    <include layout="@layout/activity_bottom_interface"/>
+<!--&lt;!&ndash;    自定义导航栏四个按钮&ndash;&gt;-->
+<!--    <include layout="@layout/activity_bottom_interface"/>-->
 
     <TextView
         android:id="@+id/text_view"

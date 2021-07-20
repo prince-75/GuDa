@@ -1,26 +1,34 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.application'//这是一个应用程序模块
+    //.library：这是一个库模块
 }
 
+//android闭包
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
+    compileSdkVersion 30//指定项目的编译版本
+    buildToolsVersion "30.0.3"//指定项目构建工具的版本
+    //defaultConfig闭包
     defaultConfig {
-        applicationId "com.example.guda"
-        minSdkVersion 28
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.example.guda"//项目的包名
+        minSdkVersion 28//最低兼容版本
+        targetSdkVersion 30//已经测试的可以兼容的最高android版本，启用最高版本的新功能
+        versionCode 1//指定项目的版本号
+        versionName "1.0"//指定项目的版本名
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    //buildTypes闭包
     buildTypes {
+        //release闭包：指定正式版安装文件的配置
         release {
-            minifyEnabled false
+            minifyEnabled false//是否对项目代码进行混淆
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        //debug闭包：指定测试版安装文件的配置
+//        debug{
+//        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -32,6 +40,7 @@ android {
     }
 }
 
+//dependencies闭包；指定当前项目所有依赖关系
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
