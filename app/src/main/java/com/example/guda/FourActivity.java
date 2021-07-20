@@ -29,30 +29,30 @@ public class FourActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //导航栏按钮
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button3 = (Button)findViewById(R.id.button3);
-        button1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(FourActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(FourActivity.this,SecondActivity.class);
-                startActivity(intent);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button button1 = (Button)findViewById(R.id.button1);
+//        Button button2 = (Button)findViewById(R.id.button2);
+//        Button button3 = (Button)findViewById(R.id.button3);
+//        button1.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(FourActivity.this,MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        button2.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(FourActivity.this,SecondActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        button3.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //滚动屏幕
         initContents();//滚动数据初始化
@@ -66,31 +66,29 @@ public class FourActivity extends AppCompatActivity {
 
     private void initContents(){
         for(int i=0;i<2;i++){
+            Contents wodeziliao11 = new Contents("运动圈子",R.drawable.gerenziliao);
+            contentsList.add(wodeziliao11);
             Contents wodeziliao = new Contents("我的资料",R.drawable.gerenziliao);
             contentsList.add(wodeziliao);
-            Contents wodeziliao2 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao2 = new Contents("运动计划",R.drawable.gerenziliao);
             contentsList.add(wodeziliao2);
-            Contents wodeziliao3 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao3 = new Contents("健康分析",R.drawable.gerenziliao);
             contentsList.add(wodeziliao3);
-            Contents wodeziliao4 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao4 = new Contents("联系客服",R.drawable.gerenziliao);
             contentsList.add(wodeziliao4);
             Contents wodeziliao5 = new Contents("我的资料",R.drawable.gerenziliao);
             contentsList.add(wodeziliao5);
-            Contents wodeziliao6 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao6 = new Contents("常用联系人",R.drawable.gerenziliao);
             contentsList.add(wodeziliao6);
-            Contents wodeziliao7 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao7 = new Contents("我的收藏",R.drawable.gerenziliao);
             contentsList.add(wodeziliao7);
-            Contents wodeziliao8 = new Contents("我的资料",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao8);
-            Contents wodeziliao9 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao9 = new Contents("申请认证",R.drawable.gerenziliao);
             contentsList.add(wodeziliao9);
-            Contents wodeziliao10 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao10 = new Contents("用户邀请",R.drawable.gerenziliao);
             contentsList.add(wodeziliao10);
-            Contents wodeziliao11 = new Contents("我的资料",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao11);
-            Contents wodeziliao12 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao12 = new Contents("合作邀请",R.drawable.gerenziliao);
             contentsList.add(wodeziliao12);
-            Contents wodeziliao13 = new Contents("我的资料",R.drawable.gerenziliao);
+            Contents wodeziliao13 = new Contents("APP信息",R.drawable.gerenziliao);
             contentsList.add(wodeziliao13);
         }
     }
