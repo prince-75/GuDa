@@ -24,6 +24,21 @@
         android:textColor="#9932"
         android:textSize="28dp"/>
 
+<!--    -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_intent"
+        android:text="浏览器"
+        android:textColor="#23238E"
+        android:textSize="20dp"
+        android:layout_centerInParent="true"
+        />
+    <!--    android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"-->
+    <!--    android:layout_weight="1"
+            android:layout_gravity="bottom"-->
 
 
 
