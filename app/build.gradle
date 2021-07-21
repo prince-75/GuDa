@@ -57,5 +57,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
+
+
+    //添加使用滚动控件RecyclerView的依赖库
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 

@@ -6,22 +6,22 @@
 
 
     <!--自定义标题栏返回和编辑按钮-->
-    <com.example.guda.TitleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+<!--    <com.example.guda.TitleLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
 
     <!--自定义导航栏四个按钮-->
     <include layout="@layout/activity_bottom_interface"/>
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="发现"
-        android:textColor="#9932"
-        android:textSize="28dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/text_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:text="发现"-->
+<!--        android:textColor="#9932"-->
+<!--        android:textSize="28dp"/>-->
 
 
 

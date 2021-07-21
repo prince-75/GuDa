@@ -1,4 +1,4 @@
-//创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类
+//创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
 package com.example.guda;
 
 import android.content.Context;
@@ -9,8 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+//ListView控件使用
+/*
 public class ContentsAdapter extends ArrayAdapter<Contents> {
     private int resourceId;
     //传入上下文、布局、数据
@@ -39,4 +42,45 @@ public class ContentsAdapter extends ArrayAdapter<Contents> {
         return view;
     }
 }
+ */
 
+//RecyclerView版本
+public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHolder>{
+    private List<Contents> mContentsList;
+    //内部类ViewHolder
+    static class ViewHolder extends RecyclerView.ViewHolder{
+        ImageView contentsImage;
+        TextView contentsName;
+        //构造函数ViewHolder
+        public ViewHolder(View view){//参数view表示RecyclerView子项的最外层布局
+            super(view);
+            //获取实例
+            contentsImage = (ImageView) view.findViewById(R.id.contents_image);
+            contentsName = (TextView) view.findViewById(R.id.contents_name);
+        }
+    }
+
+    //构造函数ContentsAdapter
+    public ContentsAdapter(List<Contents> contentsList){
+        //全局变量传入数据
+        mContentsList = contentsList;
+    }
+
+    //重写RecyclerView.Adapter的三个方法p124
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forth_item,parent,false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+    @Override
+    public void onBindViewHolder(ViewHolder holder,int position){
+        Contents contents = mContentsList.get(position);
+        holder.contentsImage.setImageResource(contents.getImageId());
+        holder.contentsName.setText(contents.getName());
+    }
+    @Override
+    public int getItemCount(){
+        return mContentsList.size();
+    }
+}

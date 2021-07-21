@@ -6,43 +6,43 @@
     <!--    android:orientation="horizontal"-->
 
 <!--自定义标题栏返回和编辑按钮-->
-    <com.example.guda.TitleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-    />
+<!--    <com.example.guda.TitleLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--    />-->
 
 <!--自定义导航栏四个按钮-->
     <include layout="@layout/activity_bottom_interface"/>
 
-<!--上方标题栏-->
-    <TextView
-        android:id="@+id/text_view"
+<!--滚动控件-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_View"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="动作库"
-        android:textColor="#9932"
-        android:textSize="28dp"/>
-
-<!--    -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_intent"
-        android:text="浏览器"
-        android:textColor="#23238E"
-        android:textSize="20dp"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
         />
-    <!--    android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"-->
-    <!--    android:layout_weight="1"
-            android:layout_gravity="bottom"-->
+
+<!--上方标题栏-->
+<!--    <TextView-->
+<!--        android:id="@+id/text_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:text="动作库"-->
+<!--        android:textColor="#9932"-->
+<!--        android:textSize="28dp"/>-->
 
 
 
-
+<!--隐式Intent访问外部网页-->
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/button_intent"-->
+<!--        android:text="浏览器"-->
+<!--        android:textColor="#23238E"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        />-->
 
 
 <!--调用本机摄像头-->
@@ -56,7 +56,6 @@
 <!--            android:id="@+id/take_photo"-->
 <!--            android:text="Take Photo"-->
 <!--            android:layout_gravity="center_vertical"/>-->
-
 <!--        <ImageView-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
