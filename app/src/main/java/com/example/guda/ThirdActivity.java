@@ -4,14 +4,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,12 +16,29 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.example.guda.Network.Constants;
+import com.hwangjr.rxbus.RxBus;
+import com.koushikdutta.async.AsyncServer;
+import com.koushikdutta.async.http.body.MultipartFormDataBody;
+import com.koushikdutta.async.http.body.UrlEncodedFormBody;
+import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
+import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class ThirdActivity extends BaseActivity implements View.OnClickListener {
@@ -44,7 +58,13 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private ImageView photoTv;
     private String photoPath;
     private String videoPath;
+    private String videoName;
     private File file;
+
+    private AsyncHttpServer mServer = new AsyncHttpServer();
+    private AsyncServer mAsyncServer = new AsyncServer();
+    private MultipartFormDataBody mBody;
+    private FileOutputStream mFileOutputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +184,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
      */
     private void createVideoFile() {
         //设置图片文件名，以当前时间的毫秒值为名称
-        String videoName= Calendar.getInstance().getTimeInMillis()+ ".mp4";
+        videoName = Calendar.getInstance().getTimeInMillis()+ ".mp4";
         //创建图片文件
         file = new File(Environment.getExternalStorageDirectory()
                 + "/" + getPackageName() + "/", videoName);
@@ -217,38 +237,100 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
      * 打开相册
      */
     private void chooseAlbum() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, ALBUM_REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case ALBUM_REQUEST_CODE: //相册选择的回调
-                    Uri uri = data.getData(); //获取系统返回的照片uri
-                    String[] strings = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getContentResolver().query(uri, strings, null, null, null);
-                    cursor.moveToFirst();
-                    int index = cursor.getColumnIndex(strings[0]);
-                    String path = cursor.getString(index); //获取图片路径
-                    cursor.close();
-                    Log.d("fantasychong_path", path);
-                    Bitmap bitmap = BitmapFactory.decodeFile(PhotoBitmapUtils.amendRotatePhoto(path, ThirdActivity.this));
-                    photoTv.setImageBitmap(bitmap);
-                    break;
-                case CAMERA_REQUEST_CODE: //摄像头拍照的回调
-                    Bitmap bitmap1 = BitmapFactory.decodeFile(PhotoBitmapUtils.amendRotatePhoto(photoPath, ThirdActivity.this));
-                    photoTv.setImageBitmap(bitmap1);
-                    break;
-                case VIDEO_RESULT_CODE: //摄像头录像的回调
-                    Log.d("fantasychong_video", videoPath);
-                    break;
-                default:
-                    break;
-            }
+
+        if (resultCode == RESULT_OK && null != data) {
+            Uri selectedVideo = data.getData();
+
+
+            String[] filePathColumn = { MediaStore.Video.Media.DATA, MediaStore.Images.Media.SIZE, MediaStore.Images.Media.DISPLAY_NAME};
+
+            Cursor cursor = getContentResolver().query(selectedVideo ,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            videoName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
+//            Toast.makeText(ThirdActivity.this, videoName, Toast.LENGTH_SHORT).show();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            videoPath = cursor.getString(columnIndex);
+            Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
+            videoUoload();
+            cursor.close();
         }
+    }
+
+    private void videoUoload(){
+        mServer.get("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
+            JSONArray array = new JSONArray();
+            String dir = videoPath.replace(videoName, "");
+            File file = new File(dir, videoName);
+            if (file.exists() && file.isFile()) {
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("name", videoName);
+                    long fileLen = file.length();
+                    DecimalFormat df = new DecimalFormat("0.00");
+                    if (fileLen > 1024 * 1024) {
+                        jsonObject.put("size", df.format(fileLen * 1f / 1024 / 1024)
+                                + "MB");
+                    } else if (fileLen > 1024) {
+                        jsonObject.put("size", df.format(fileLen * 1f / 1024) + "KB");
+                    } else {
+                        jsonObject.put("size", fileLen + "B");
+                    }
+                    array.put(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            response.send(array.toString());
+        });
+        mServer.post("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse
+                response) -> {
+            final UrlEncodedFormBody body = (UrlEncodedFormBody) request.getBody();
+            if ("delete".equalsIgnoreCase(body.get().getString("_method"))) {
+                String path = request.getPath().replace("/files/", "");
+                try {
+                    path = URLDecoder.decode(path, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String dir = videoPath.replace(videoName, "");
+                File file = new File(dir, path);
+                if (file.exists() && file.isFile() && file.delete()) {
+                    RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
+                }
+            }
+            response.end();
+        });
+        mServer.get("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse
+                response) -> {
+            String path = request.getPath().replace("/files/", "");
+            try {
+                path = URLDecoder.decode(path, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            String dir = videoPath.replace(videoName, "");
+            File file = new File(dir, path);
+            if (file.exists() && file.isFile()) {
+                try {
+                    response.getHeaders().add("Content-Disposition", "attachment;filename=" +
+                            URLEncoder.encode(file.getName(), "utf-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                response.sendFile(file);
+                return;
+            }
+            response.code(404).send("Not found!");
+        });
+        mServer.listen(mAsyncServer, Constants.HTTP_PORT);
     }
 
 }
