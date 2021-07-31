@@ -1,33 +1,13 @@
 package com.example.guda;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,16 +101,13 @@ public class MainActivity extends BaseActivity {
 */
 
         //RecyclerView滚动屏幕
-        initContents();//滚动数据初始化
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
-        //设置布局方式
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
-        ContentsAdapter adapter = new ContentsAdapter(contentsList);
-        recyclerView.setAdapter(adapter);
-        //分割线 ItemDecoration
-        //Item增删动画 ItemAnimator
+//        initContents();//滚动数据初始化
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//线性布局
+//        recyclerView.setLayoutManager(layoutManager);
+////        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
+//        ContentsAdapter adapter = new ContentsAdapter(contentsList);
+//        recyclerView.setAdapter(adapter);
 
     }
 
