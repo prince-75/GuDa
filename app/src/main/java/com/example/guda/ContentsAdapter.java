@@ -51,7 +51,7 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView contentsImage;
         TextView contentsName;
-        //构造函数ViewHolder
+        //ViewHolder：实例缓存、显示子项
         public ViewHolder(View view){//参数view表示RecyclerView子项的最外层布局
             super(view);
             //获取实例

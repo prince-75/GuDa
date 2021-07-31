@@ -14,7 +14,7 @@
 <!--自定义导航栏四个按钮-->
     <include layout="@layout/activity_bottom_interface"/>
 
-<!--滚动控件-->
+<!--滚动控件布局文件-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_View"
         android:layout_width="match_parent"
