@@ -88,6 +88,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                //由一向三实现数据传递
                 intent.putExtra("param1","data1");
                 intent.putExtra("param2","data2");
                 startActivity(intent);
@@ -122,11 +123,14 @@ public class MainActivity extends BaseActivity {
         //RecyclerView滚动屏幕
         initContents();//滚动数据初始化
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//线性布局
+        //设置布局方式
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 //        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
         ContentsAdapter adapter = new ContentsAdapter(contentsList);
         recyclerView.setAdapter(adapter);
+        //分割线 ItemDecoration
+        //Item增删动画 ItemAnimator
 
     }
 
