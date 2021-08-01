@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -73,9 +74,9 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
         //导航栏按钮
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button4 = (Button)findViewById(R.id.button4);
+        Button button1 = (Button) findViewById(R.id.button1);
+        Button button2 = (Button) findViewById(R.id.button2);
+        Button button4 = (Button) findViewById(R.id.button4);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
