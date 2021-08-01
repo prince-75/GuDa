@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,9 +32,9 @@ public class SecondActivity extends BaseActivity implements Animator.AnimatorLis
         //绑定
         ButterKnife.bind(this);
         //导航栏按钮
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button3 = (Button)findViewById(R.id.button3);
-        Button button4 = (Button)findViewById(R.id.button4);
+        Button button1 = (Button) findViewById(R.id.button1);
+        Button button3 = (Button) findViewById(R.id.button3);
+        Button button4 = (Button) findViewById(R.id.button4);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

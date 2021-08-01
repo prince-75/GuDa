@@ -1,6 +1,8 @@
 package com.example.guda;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -22,6 +24,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.example.guda.Network.Constants;
+import com.example.guda.Network.util.WifiUtils;
+import com.example.guda.utils.SwitchBotton;
 import com.hwangjr.rxbus.RxBus;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.body.MultipartFormDataBody;
@@ -73,6 +77,21 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_third);
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
+
+        SwitchBotton sbotton = (SwitchBotton)findViewById(R.id.sbotton);
+        sbotton.setOnMbClickListener(new SwitchBotton.OnMClickListener() {
+            @Override
+            public void onClick(boolean isRight) {
+                if (isRight){
+                    startService();
+                    wifiShow();
+                }else {
+                    mServer.stop();
+                    mAsyncServer.stop();
+                }
+            }
+        });
+
         //导航栏按钮
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
@@ -107,13 +126,23 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
      */
     private void initViews() {
         chooseAlbumBtn = findViewById(R.id.main_chooseAlbumBtn);
-        takePhotoBtn = findViewById(R.id.main_takePhotoBtn);
         takeVideoBtn = findViewById(R.id.main_takeVideoBtn);
-        photoTv = findViewById(R.id.main_photoTv);
-
         chooseAlbumBtn.setOnClickListener(this);
-        takePhotoBtn.setOnClickListener(this);
         takeVideoBtn.setOnClickListener(this);
+    }
+
+    private void wifiShow(){
+        String ip = WifiUtils.getDeviceIpAddress();
+        AlertDialog alertDialog = new AlertDialog.Builder(ThirdActivity.this)
+                .setTitle("成功开启服务")
+                .setMessage(ip)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     @Override
@@ -127,18 +156,6 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                                     Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_ALBUM);
                 } else {
                     chooseAlbum(); //打开相册
-                }
-                break;
-            case R.id.main_takePhotoBtn: //摄像头拍照
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.CAMERA}, MY_PERMISSION_CAMERA);
-                } else {
-                    takeCamera(); //打开相机拍照
                 }
                 break;
             case R.id.main_takeVideoBtn: //摄像头录像
@@ -196,21 +213,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         file.setWritable(true);
     }
 
-    /**
-     * 打开相机拍照
-     */
-    private void takeCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File file = new File(Environment.getExternalStorageDirectory(), "PhotoVideoTest");
-        if (!file.exists()) {
-            file.mkdir();
-        }
-        File photoFile = new File(file, PhotoBitmapUtils.getImageFileName());
-        photoPath = photoFile.getAbsolutePath();
-        Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", photoFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        startActivityForResult(intent, CAMERA_REQUEST_CODE);
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -219,9 +222,6 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
             switch (requestCode) {
                 case MY_PERMISSION_ALBUM:
                     chooseAlbum(); //打开相册
-                    break;
-                case MY_PERMISSION_CAMERA:
-                    takeCamera(); //打开摄像头拍照
                     break;
                 case MY_PERMISSION_VEDIO:
                     takeVideo(); //打开相机录像
@@ -256,16 +256,14 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
             videoName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
-//            Toast.makeText(ThirdActivity.this, videoName, Toast.LENGTH_SHORT).show();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             videoPath = cursor.getString(columnIndex);
             Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
-            videoUoload();
             cursor.close();
         }
     }
 
-    private void videoUoload(){
+    private void startService(){
         mServer.get("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             JSONArray array = new JSONArray();
             String dir = videoPath.replace(videoName, "");

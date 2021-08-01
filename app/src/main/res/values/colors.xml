@@ -13,4 +13,8 @@
     <color name="colorWifiConnected">#6495ED</color>
     <color name="google_red">#EB4537</color>
     <color name="google_yellow">#FAC230</color>
+    <color name="grey">#545454</color>
+    <color name="blue">#4599BF</color>
+
+
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--    android:orientation="horizontal"-->
@@ -12,7 +13,6 @@
 <!--        />-->
 
     <!--自定义导航栏四个按钮-->
-    <include layout="@layout/activity_bottom_interface"/>
 
     <!--标题组件-->
 <!--    <TextView-->
@@ -26,22 +26,29 @@
 
 
     <!--摄像头组件-->
+    <include layout="@layout/activity_bottom_interface" />
+
     <Button
         android:id="@+id/main_chooseAlbumBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="相册"
-        android:layout_centerInParent="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_centerInParent="true" />
 
-    <Button
-        android:id="@+id/main_takePhotoBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="照片"
-        android:layout_above="@id/main_chooseAlbumBtn"/>
+    <com.example.guda.utils.SwitchBotton
+        android:id="@+id/sbotton"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        tools:ignore="InvalidId" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/main_takePhotoBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="照片"-->
+<!--        android:layout_above="@id/main_chooseAlbumBtn"/>-->
 
     <Button
         android:id="@+id/main_takeVideoBtn"
@@ -49,13 +56,13 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="视频"
-        android:layout_below="@id/main_chooseAlbumBtn"/>
+        android:layout_below="@id/main_chooseAlbumBtn"
+        android:layout_centerHorizontal="true"/>
 
-    <ImageView
-        android:id="@+id/main_photoTv"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_margin="10dp"
-        android:scaleType="fitXY" />
+<!--    <ImageView-->
+<!--        android:id="@+id/main_photoTv"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:scaleType="fitXY" />-->
 
- </RelativeLayout>
+</RelativeLayout>

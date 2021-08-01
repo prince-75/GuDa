@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <!--    android:background="@drawable/gudadatasets"-->
@@ -11,16 +12,17 @@
 <!--        android:layout_height="wrap_content"-->
 <!--    />-->
 
-<!--自定义导航栏四个按钮-->
-    <include layout="@layout/activity_bottom_interface"/>
 
 <!--滚动控件布局文件-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_View"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 
+    <!--自定义导航栏四个按钮-->
+    <include layout="@layout/activity_bottom_interface" />
 <!--上方标题栏-->
 <!--    <TextView-->
 <!--        android:id="@+id/text_view"-->
@@ -98,4 +100,4 @@
     <!--实现弹出对话框在MainActivity-->
 
 
-</RelativeLayout>
+</LinearLayout>

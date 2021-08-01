@@ -25,10 +25,10 @@
 <!--        android:textSize="28dp"/>-->
 
     <!--滚动屏幕-->
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list_view"/>
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/list_view"/>-->
 
 
 

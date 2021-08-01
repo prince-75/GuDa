@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,30 +30,30 @@ public class FourActivity extends BaseActivity {
         getSupportActionBar().hide();
 
         //导航栏按钮
-//        Button button1 = (Button)findViewById(R.id.button1);
-//        Button button2 = (Button)findViewById(R.id.button2);
-//        Button button3 = (Button)findViewById(R.id.button3);
-//        button1.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(FourActivity.this,MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        button2.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(FourActivity.this,SecondActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        button3.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        Button button1 = (Button) findViewById(R.id.button1);
+        Button button2 = (Button) findViewById(R.id.button2);
+        Button button3 = (Button) findViewById(R.id.button3);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(FourActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(FourActivity.this,SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //ListView滚动屏幕
 //        initContents();//滚动数据初始化

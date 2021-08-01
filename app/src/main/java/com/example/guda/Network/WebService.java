@@ -239,11 +239,8 @@ public class WebService extends Service {
                             e.printStackTrace();
                         }
                     }
-
                     response.send(res);
-                }
-
-        );
+                });
         server.listen(mAsyncServer, Constants.HTTP_PORT);
     }
 

@@ -1,9 +1,12 @@
 package com.example.guda;
 
+<<<<<<< HEAD
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+=======
+>>>>>>> bd20eb38eae23effc0ff69e9897b9009b594585a
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.ImageButton;
+=======
+>>>>>>> bd20eb38eae23effc0ff69e9897b9009b594585a
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -108,6 +114,7 @@ public class MainActivity extends BaseActivity {
 */
 
         //RecyclerView滚动屏幕
+<<<<<<< HEAD
         initContents();//滚动数据初始化
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         //设置布局方式
@@ -127,6 +134,15 @@ public class MainActivity extends BaseActivity {
         //分割线 ItemDecoration
 
         //Item增删动画 ItemAnimator
+=======
+//        initContents();//滚动数据初始化
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//线性布局
+//        recyclerView.setLayoutManager(layoutManager);
+////        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
+//        ContentsAdapter adapter = new ContentsAdapter(contentsList);
+//        recyclerView.setAdapter(adapter);
+>>>>>>> bd20eb38eae23effc0ff69e9897b9009b594585a
 
     }
 
