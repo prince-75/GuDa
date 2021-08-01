@@ -6,7 +6,7 @@
     <!--    android:orientation="horizontal"-->
 
 
-<!--    &lt;!&ndash;自定义标题栏返回和编辑按钮&ndash;&gt;-->
+    <!--自定义标题栏返回和编辑按钮-->
 <!--    <com.example.guda.TitleLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
@@ -28,6 +28,12 @@
     <!--摄像头组件-->
     <include layout="@layout/activity_bottom_interface" />
 
+    <com.example.guda.utils.SwitchBotton
+        android:id="@+id/sbotton"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        tools:ignore="InvalidId" />
+
     <Button
         android:id="@+id/main_chooseAlbumBtn"
         android:layout_width="wrap_content"
@@ -35,20 +41,6 @@
         android:padding="10dp"
         android:text="相册"
         android:layout_centerInParent="true" />
-
-    <com.example.guda.utils.SwitchBotton
-        android:id="@+id/sbotton"
-        android:layout_width="64dp"
-        android:layout_height="32dp"
-        tools:ignore="InvalidId" />
-
-    <!--    <Button-->
-<!--        android:id="@+id/main_takePhotoBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="10dp"-->
-<!--        android:text="照片"-->
-<!--        android:layout_above="@id/main_chooseAlbumBtn"/>-->
 
     <Button
         android:id="@+id/main_takeVideoBtn"
@@ -58,6 +50,18 @@
         android:text="视频"
         android:layout_below="@id/main_chooseAlbumBtn"
         android:layout_centerHorizontal="true"/>
+
+
+
+    <!--    <Button-->
+<!--        android:id="@+id/main_takePhotoBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="照片"-->
+<!--        android:layout_above="@id/main_chooseAlbumBtn"/>-->
+
+
 
 <!--    <ImageView-->
 <!--        android:id="@+id/main_photoTv"-->
