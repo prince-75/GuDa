@@ -1,18 +1,16 @@
-//创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
+//创建一个自定义适配器，泛型指向Contents类，实例代码在MainActivity类,有ListView和RecyclerView两个版本，根据需要打开
 package com.example.guda;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-//ListView控件使用
+//ListView控件版本
 /*
 public class ContentsAdapter extends ArrayAdapter<Contents> {
     private int resourceId;
@@ -69,7 +67,7 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     //重写RecyclerView.Adapter的三个方法p124
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forth_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contents_item,parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

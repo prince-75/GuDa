@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--规定FourActivity中每一行数据的格式，这里是一张图片一句话的格式-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contents_image" />
+
+    <TextView
+        android:id="@+id/contents_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"/>
+
+
+
+
+</LinearLayout>

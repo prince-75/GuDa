@@ -1,33 +1,20 @@
 package com.example.guda;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.DialogInterface;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,23 +23,23 @@ public class MainActivity extends BaseActivity {
     private List<Contents> contentsList = new ArrayList<>();
     //创建菜单
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
     //菜单响应事件
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_item:
-                Toast.makeText(this, "You clicked Add", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.remove_item:
-                Toast.makeText(this, "You clicked Remove", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-        }
-        return true;
-    }
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.add_item:
+//                Toast.makeText(this, "You clicked Add", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.remove_item:
+//                Toast.makeText(this, "You clicked Remove", Toast.LENGTH_SHORT).show();
+//                break;
+//            default:
+//        }
+//        return true;
+//    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +48,13 @@ public class MainActivity extends BaseActivity {
         //Log.d("MainActivity","OnCreate execute");//过滤器、日志级别控制在第二版书1.4
 
         //隐藏系统自带标题栏
-        //getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
         //导航栏按钮
-        Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
-        Button button4 = (Button) findViewById(R.id.button4);
         //setOnClickListener：事件监听器
+        Button button2 = (Button)findViewById(R.id.button2);
+        Button button3 = (Button)findViewById(R.id.button3);
+        Button button4 = (Button)findViewById(R.id.button4);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public int hashCode() {
@@ -122,14 +109,23 @@ public class MainActivity extends BaseActivity {
 
         //RecyclerView滚动屏幕
         initContents();//滚动数据初始化
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         //设置布局方式
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 //        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
         ContentsAdapter adapter = new ContentsAdapter(contentsList);
         recyclerView.setAdapter(adapter);
+        //获得屏幕、按钮高度
+//        int screenWidth = getWindowManager().getDefaultDisplay().getWidth(); // 屏幕宽（像素，如：480px）
+//        int screenHeight = getWindowManager().getDefaultDisplay().getHeight(); // 屏幕高（像素，如：800p）
+//        int buttonHeight = button2.getHeight();
+        //控制滚动目录范围
+//        ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+//        layoutParams.height=screenHeight*5/6;
+
         //分割线 ItemDecoration
+
         //Item增删动画 ItemAnimator
 
     }

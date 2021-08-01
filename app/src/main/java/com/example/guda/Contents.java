@@ -1,4 +1,4 @@
-//定义一个实体类Contents，用于提供ListView和RecyclerView相同的的实体类型（这里是一张图加一句文字），实例代码在FourActivity类
+//定义一个实体类Contents，用于提供ListView和RecyclerView相同的的实体类型（这里是一张图加一句文字），实例代码在MainActivity类
 package com.example.guda;
 
 public class Contents {
