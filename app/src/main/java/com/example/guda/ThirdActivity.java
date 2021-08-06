@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -65,6 +64,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private String videoPath;
     private String videoName;
     private File file;
+    private String ip;
 
     private AsyncHttpServer mServer = new AsyncHttpServer();
     private AsyncServer mAsyncServer = new AsyncServer();
@@ -78,6 +78,9 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
 
+        startService();//启动服务
+        wifiShow();//弹窗wifi地址
+        // 滑块按钮
         SwitchBotton sbotton = (SwitchBotton)findViewById(R.id.sbotton);
         sbotton.setOnMbClickListener(new SwitchBotton.OnMClickListener() {
             @Override
@@ -132,7 +135,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void wifiShow(){
-        String ip = WifiUtils.getDeviceIpAddress();
+        ip = WifiUtils.getDeviceIpAddress();
         AlertDialog alertDialog = new AlertDialog.Builder(ThirdActivity.this)
                 .setTitle("成功开启服务")
                 .setMessage(ip)
@@ -259,6 +262,11 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             videoPath = cursor.getString(columnIndex);
             Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
+            String uri = new String("http://%s:12345/files/%s");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(String.format(uri, ip, videoName)));
+            startActivity(intent);
+
             cursor.close();
         }
     }
