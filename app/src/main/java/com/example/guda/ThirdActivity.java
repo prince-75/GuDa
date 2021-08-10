@@ -30,13 +30,10 @@ import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.ByteBufferList;
 import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.async.http.body.MultipartFormDataBody;
-<<<<<<< HEAD
 import com.koushikdutta.async.http.body.UrlEncodedFormBody;
-import com.koushikdutta.async.http.server.AsyncHttpServer;//
-=======
+import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.body.Part;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
->>>>>>> 6b53c3bcb1e550f0914a9c60dfa0a4572825e4d6
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 
