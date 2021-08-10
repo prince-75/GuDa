@@ -12,17 +12,10 @@
 <!--        android:layout_height="wrap_content"-->
 <!--    />-->
 
-
-<!--滚动控件布局文件-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
     <!--自定义导航栏四个按钮-->
     <include layout="@layout/activity_bottom_interface" />
+
+
 <!--上方标题栏-->
 <!--    <TextView-->
 <!--        android:id="@+id/text_view"-->

@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +22,21 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.example.guda.Network.Constants;
+import com.example.guda.Network.WebService;
 import com.example.guda.Network.util.WifiUtils;
 import com.example.guda.utils.SwitchBotton;
 import com.hwangjr.rxbus.RxBus;
 import com.koushikdutta.async.AsyncServer;
+import com.koushikdutta.async.ByteBufferList;
+import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.async.http.body.MultipartFormDataBody;
+<<<<<<< HEAD
 import com.koushikdutta.async.http.body.UrlEncodedFormBody;
 import com.koushikdutta.async.http.server.AsyncHttpServer;//
+=======
+import com.koushikdutta.async.http.body.Part;
+import com.koushikdutta.async.http.server.AsyncHttpServer;
+>>>>>>> 6b53c3bcb1e550f0914a9c60dfa0a4572825e4d6
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 
@@ -55,12 +62,13 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private static final int MY_PERMISSION_ALBUM = 4;
     private static final int MY_PERMISSION_CAMERA = 5;
     private static final int MY_PERMISSION_VEDIO = 6;
+    private static final String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+    };
 
     private Button chooseAlbumBtn;
-    private Button takePhotoBtn;
     private Button takeVideoBtn;
-    private ImageView photoTv;
-    private String photoPath;
     private String videoPath;
     private String videoName;
     private File file;
@@ -70,6 +78,8 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private AsyncServer mAsyncServer = new AsyncServer();
     private MultipartFormDataBody mBody;
     private FileOutputStream mFileOutputStream;
+    WebService.FileUploadHolder fileUploadHolder = new WebService.FileUploadHolder();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +87,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_third);
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
-
+        requestPermission();
         startService();//启动服务
         wifiShow();//弹窗wifi地址
         // 滑块按钮
@@ -122,6 +132,21 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         });
         //摄像头组件
         initViews();
+    }
+
+    /**
+     *  存储权限获取
+     */
+    private void requestPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1024);
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
     }
 
     /**
@@ -201,7 +226,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     }
 
     /**
-     * 创建文件
+     * 创建视频文件
      */
     private void createVideoFile() {
         //设置图片文件名，以当前时间的毫秒值为名称
@@ -261,17 +286,25 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
             videoName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             videoPath = cursor.getString(columnIndex);
+            //显示出文件路径
             Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
-            String uri = new String("http://%s:12345/files/%s");
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(String.format(uri, ip, videoName)));
-            startActivity(intent);
+
+            //自动跳转
+//            String uri = new String("http://%s:12345/files/%s");
+//            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            intent.setData(Uri.parse(String.format(uri, ip, videoName)));
+//            startActivity(intent);
 
             cursor.close();
         }
     }
 
+
+    /**
+     * 开启服务
+     */
     private void startService(){
+        //视频列表
         mServer.get("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             JSONArray array = new JSONArray();
             String dir = videoPath.replace(videoName, "");
@@ -297,34 +330,50 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
             }
             response.send(array.toString());
         });
-        mServer.post("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse
-                response) -> {
-            final UrlEncodedFormBody body = (UrlEncodedFormBody) request.getBody();
-            if ("delete".equalsIgnoreCase(body.get().getString("_method"))) {
-                String path = request.getPath().replace("/files/", "");
-                try {
-                    path = URLDecoder.decode(path, "utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+
+        //下载文件
+        mServer.post("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response)
+                        -> {
+                    final MultipartFormDataBody body = (MultipartFormDataBody) request.getBody();
+                    body.setMultipartCallback((Part part) -> {
+                        if (part.isFile()) {
+                            body.setDataCallback((DataEmitter emitter, ByteBufferList bb) -> {
+                                fileUploadHolder.write(bb.getAllByteArray());
+                                bb.recycle();
+                            });
+                        } else {
+                            if (body.getDataCallback() == null) {
+                                body.setDataCallback((DataEmitter emitter, ByteBufferList bb) -> {
+                                    try {
+                                        String fileName = URLDecoder.decode(new String(bb
+                                                .getAllByteArray()), "UTF-8");
+                                        fileUploadHolder.setFileName(fileName);
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                    }
+                                    bb.recycle();
+                                });
+                            }
+                        }
+                    });
+                    request.setEndCallback((Exception e) -> {
+                        fileUploadHolder.reset();
+                        response.end();
+                        RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
+                    });
                 }
-                String dir = videoPath.replace(videoName, "");
-                File file = new File(dir, path);
-                if (file.exists() && file.isFile() && file.delete()) {
-                    RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
-                }
-            }
-            response.end();
-        });
+        );
+
+        //上传视频
         mServer.get("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse
                 response) -> {
-            String path = request.getPath().replace("/files/", "");
+            String fileName = request.getPath().replace("/files/", "");
             try {
-                path = URLDecoder.decode(path, "utf-8");
+                fileName = URLDecoder.decode(fileName, "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            String dir = videoPath.replace(videoName, "");
-            File file = new File(dir, path);
+            File file = new File(videoPath, fileName);
             if (file.exists() && file.isFile()) {
                 try {
                     response.getHeaders().add("Content-Disposition", "attachment;filename=" +

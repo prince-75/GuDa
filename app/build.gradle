@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.example.guda"//项目的包名
         minSdkVersion 28//最低兼容版本
-        targetSdkVersion 30//已经测试的可以兼容的最高android版本，启用最高版本的新功能
+        targetSdkVersion 29//已经测试的可以兼容的最高android版本，启用最高版本的新功能
         versionCode 1//指定项目的版本号
         versionName "1.0"//指定项目的版本名
 

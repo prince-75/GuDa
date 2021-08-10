@@ -1,4 +1,5 @@
-//创建一个自定义适配器，泛型指向Contents类，实例代码在MainActivity类,有ListView和RecyclerView两个版本，根据需要打开
+//创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
+//创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
 package com.example.guda;
 
 import android.view.LayoutInflater;

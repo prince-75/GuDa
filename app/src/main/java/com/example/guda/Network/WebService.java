@@ -321,7 +321,7 @@ public class WebService extends Service {
         return "";
     }
 
-    public class FileUploadHolder {
+    public static class FileUploadHolder {
         private String fileName;
         private File recievedFile;
         private BufferedOutputStream fileOutPutStream;
@@ -334,10 +334,10 @@ public class WebService extends Service {
         public void setFileName(String fileName) {
             this.fileName = fileName;
             totalSize = 0;
-            if (!Constants.DIR.exists()) {
-                Constants.DIR.mkdirs();
+            if (!Constants.DataDIR.exists()) {
+                Constants.DataDIR.mkdirs();
             }
-            this.recievedFile = new File(Constants.DIR, this.fileName);
+            this.recievedFile = new File(Constants.DataDIR, this.fileName);
             Timber.d(recievedFile.getAbsolutePath());
             try {
                 fileOutPutStream = new BufferedOutputStream(new FileOutputStream(recievedFile));
