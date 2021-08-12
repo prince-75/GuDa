@@ -4,7 +4,8 @@ buildscript {
         google()
         //
         mavenCentral()
-        maven { url 'https://maven.google.com' }
+        //这里换成了阿里国内镜像maven以加快速度
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         //可以引用jcenter上的仓库
         jcenter()
     }
@@ -22,7 +23,7 @@ allprojects {
         google()
         //
         mavenCentral()
-        maven { url 'https://maven.google.com' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         //
         jcenter()//
     }
