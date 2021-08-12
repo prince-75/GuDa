@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-
+    //滚动目录实列申明
+    //private List<Contents> datasetsList = new ArrayList<>();
     //创建菜单
     @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

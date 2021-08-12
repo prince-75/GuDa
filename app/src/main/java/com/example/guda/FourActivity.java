@@ -84,13 +84,6 @@ public class FourActivity extends BaseActivity {
         //分割线 ItemDecoration
 
         //Item增删动画 ItemAnimator
-//        initContents();//滚动数据初始化
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);//线性布局
-//        recyclerView.setLayoutManager(layoutManager);
-////        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
-//        ContentsAdapter adapter = new ContentsAdapter(contentsList);
-//        recyclerView.setAdapter(adapter);
 
     }
 

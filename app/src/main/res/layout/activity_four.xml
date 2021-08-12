@@ -1,34 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 <!--    android:background="@drawable/gudamine"-->
     <!--    android:orientation="horizontal"-->
-
-<!--    自定义标题栏返回和编辑按钮-->
-    <com.example.guda.TitleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-<!--    自定义导航栏四个按钮-->
-    <include layout="@layout/activity_bottom_interface"/>
-
-<!--    <TextView-->
-<!--        android:id="@+id/text_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:text="我的"-->
-<!--        android:textColor="#9932"-->
-<!--        android:textSize="28dp"/>-->
-
-    <!--滚动屏幕-->
-<!--    <ListView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/list_view"/>-->
 
     <!--滚动控件布局文件-->
     <androidx.recyclerview.widget.RecyclerView
@@ -37,10 +13,32 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         />
+    <!--    自定义导航栏四个按钮-->
+    <include layout="@layout/activity_bottom_interface"/>
+
+    <!--    自定义标题栏返回和编辑按钮-->
+    <!--    <com.example.guda.TitleLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        />-->
 
 
-    <!--
-            android:layout_weight="1"-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/text_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="我的"-->
+    <!--        android:textColor="#9932"-->
+    <!--        android:textSize="28dp"/>-->
+
+    <!--滚动屏幕-->
+    <!--    <ListView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:id="@+id/list_view"/>-->
+
 <!--    <TextView-->
 <!--        android:id="@+id/text_view"-->
 <!--        android:layout_width="0dp"-->
@@ -86,4 +84,4 @@
     去MainActivity-->
 
 
-</RelativeLayout>
+</LinearLayout>
