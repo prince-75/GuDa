@@ -1,21 +1,15 @@
 package com.example.guda;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+
+import com.example.guda.recyclerviewcontants.Contents;
+import com.example.guda.recyclerviewcontants.ContentsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,32 +82,30 @@ public class FourActivity extends BaseActivity {
     }
 
     private void initContents(){
-        for(int i=0;i<2;i++){
-            Contents wodeziliao11 = new Contents("运动圈子",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao11);
+//        for(int i=0;i<2;i++){
+            Contents yundongquanzi = new Contents("运动圈子",R.drawable.gerenziliao);
+            contentsList.add(yundongquanzi);
             Contents wodeziliao = new Contents("我的资料",R.drawable.gerenziliao);
             contentsList.add(wodeziliao);
-            Contents wodeziliao2 = new Contents("运动计划",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao2);
-            Contents wodeziliao3 = new Contents("健康分析",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao3);
-            Contents wodeziliao4 = new Contents("联系客服",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao4);
-            Contents wodeziliao5 = new Contents("我的资料",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao5);
-            Contents wodeziliao6 = new Contents("常用联系人",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao6);
-            Contents wodeziliao7 = new Contents("我的收藏",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao7);
-            Contents wodeziliao9 = new Contents("申请认证",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao9);
-            Contents wodeziliao10 = new Contents("用户邀请",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao10);
-            Contents wodeziliao12 = new Contents("合作邀请",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao12);
-            Contents wodeziliao13 = new Contents("APP信息",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao13);
-        }
+            Contents yundongjihua = new Contents("运动计划",R.drawable.gerenziliao);
+            contentsList.add(yundongjihua);
+            Contents jiankangfenxi = new Contents("健康分析",R.drawable.gerenziliao);
+            contentsList.add(jiankangfenxi);
+            Contents lianxikefu = new Contents("联系客服",R.drawable.gerenziliao);
+            contentsList.add(lianxikefu);
+            Contents changyonglianxiren = new Contents("常用联系人",R.drawable.gerenziliao);
+            contentsList.add(changyonglianxiren);
+            Contents wodeshoucang = new Contents("我的收藏",R.drawable.gerenziliao);
+            contentsList.add(wodeshoucang);
+            Contents shenqingrenzheng = new Contents("申请认证",R.drawable.gerenziliao);
+            contentsList.add(shenqingrenzheng);
+            Contents yonghuyaoqing = new Contents("用户邀请",R.drawable.gerenziliao);
+            contentsList.add(yonghuyaoqing);
+            Contents hezuoyixiang = new Contents("合作意向",R.drawable.gerenziliao);
+            contentsList.add(hezuoyixiang);
+            Contents APPxinxi = new Contents("APP信息",R.drawable.gerenziliao);
+            contentsList.add(APPxinxi);
+//        }
     }
 
 
