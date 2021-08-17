@@ -1,4 +1,4 @@
-package com.example.guda;
+package com.example.guda.recyclerviewdatasets;
 
 import java.util.List;
 

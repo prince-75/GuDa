@@ -1,26 +1,34 @@
 package com.example.guda;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.guda.recyclerviewcontants.Contents;
+import com.example.guda.recyclerviewdatasets.BaseHolder;
+import com.example.guda.recyclerviewdatasets.DataInfor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
     //滚动目录实列申明
-    //private List<Contents> datasetsList = new ArrayList<>();
+    private RecyclerView recylcerview;//外层recyclerview
+    private DataInfor data;//假数据
+    private int screenWidth;//屏幕宽度
+    private int HORIZONTAL_VIEW_X = 0;//水平RecyclerView滑动的距离
+
     //创建菜单
     @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,6 +52,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //打印日志
         //Log.d("MainActivity","OnCreate execute");//过滤器、日志级别控制在第二版书1.4
 
@@ -52,9 +61,9 @@ public class MainActivity extends BaseActivity {
 
         //导航栏按钮
         //setOnClickListener：事件监听器
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button3 = (Button)findViewById(R.id.button3);
-        Button button4 = (Button)findViewById(R.id.button4);
+        Button button2 = (Button) findViewById(R.id.button2);
+        Button button3 = (Button) findViewById(R.id.button3);
+        Button button4 = (Button) findViewById(R.id.button4);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public int hashCode() {
@@ -76,8 +85,8 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
                 //由一向三实现数据传递
-                intent.putExtra("param1","data1");
-                intent.putExtra("param2","data2");
+//                intent.putExtra("param1", "data1");
+//                intent.putExtra("param2", "data2");
                 startActivity(intent);
             }
         });
@@ -88,6 +97,11 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        //RecyclerView滚动目录
+        basicParamInit();
+        initData();
+        initRecyclerView();
 
         //隐式Intent访问外部网页
 /*
@@ -107,7 +121,187 @@ public class MainActivity extends BaseActivity {
         });
 */
 
+    }
+
+    /**
+     * 计算屏幕的宽度
+     */
+    private void basicParamInit() {
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+
+        screenWidth = metric.widthPixels;
 
     }
-}
 
+    /**
+     * 初始化显示数据
+     */
+    private void initData() {
+        data = new DataInfor();
+        ArrayList<Integer> resourceList = new ArrayList<>();
+
+        resourceList.add(R.drawable.gudastart);
+        resourceList.add(R.drawable.gudastart);
+        resourceList.add(R.drawable.gudastart);
+        resourceList.add(R.drawable.gudastart);
+        resourceList.add(R.drawable.gudastart);
+        resourceList.add(R.drawable.gudastart);
+
+        data.gridData = data.horizontalData = data.verticalData = resourceList;
+
+    }
+
+    /**
+     * 初始化RecyclerView
+     */
+    private void initRecyclerView() {
+        recylcerview = (RecyclerView) findViewById(R.id.recycler_view_datasets);
+        //竖直排列、正向排序
+        recylcerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        //添加了一个蓝色背景
+        recylcerview.setBackgroundResource(R.color.blue);
+        recylcerview.setAdapter(new RecyclerViewAdapter());
+    }
+
+    /**
+     * 将dp转化为px
+     */
+    private int dip2px(float dip) {
+        float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
+        return (int) (v + 0.5f);
+    }
+
+
+    /**
+     * 外层RecyclerView的Adapter
+     */
+    private class RecyclerViewAdapter extends RecyclerView.Adapter<BaseHolder> {
+        //条目样式
+        private final int GRID_VIEW = 1002;
+
+        @Override
+        public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new GridViewHolder(R.layout.item_recyclerview_datasets, parent, viewType);
+        }
+
+        @Override
+        public void onBindViewHolder(BaseHolder holder, int position) {
+            holder.refreshData(data.gridData, position);
+        }
+
+        @Override
+        /**
+         * 当Item出现时调用此方法
+         */
+        public void onViewAttachedToWindow(BaseHolder holder) {
+            Log.i("mengyuan", "onViewAttachedToWindow:" + holder.getClass().toString());
+        }
+
+        @Override
+        /**
+         * 当Item被回收时调用此方法
+         */
+        public void onViewDetachedFromWindow(BaseHolder holder) {
+            Log.i("mengyuan", "onViewDetachedFromWindow:" + holder.getClass().toString());
+//            if (holder instanceof HorizontalViewHolder) {
+//                ((HorizontalViewHolder) holder).saveStateWhenDestory();
+//            }
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return 2 + data.verticalData.size();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return GRID_VIEW;
+        }
+    }
+
+
+    //----------------------Holder----------------------------
+
+    /**
+     * GridView形状的RecyclerView
+     */
+    private class GridViewHolder extends BaseHolder<List<Integer>> {
+
+        private RecyclerView item_recyclerview;
+
+        private final int ONE_LINE_SHOW_NUMBER = 3;
+
+        private List<Integer> data;
+
+        public GridViewHolder(int viewId, ViewGroup parent, int viewType) {
+            super(viewId, parent, viewType);
+            item_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview_datasets);
+
+        }
+
+        @Override
+        public void refreshData(List<Integer> data, int position) {
+            super.refreshData(data, position);
+            this.data = data;
+            //每行显示3个，水平显示
+            item_recyclerview.setLayoutManager(new GridLayoutManager(MainActivity.this, ONE_LINE_SHOW_NUMBER, LinearLayoutManager.VERTICAL, false));
+            //设置个背景色
+            item_recyclerview.setBackgroundResource(R.color.blue);
+            //设置Adapter
+            item_recyclerview.setAdapter(new GridAdapter());
+        }
+
+
+        private class GridAdapter extends RecyclerView.Adapter<BaseHolder> {
+
+            @Override
+            public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return new ItemViewHolder(R.layout.item_x2_imageview, parent, viewType);
+            }
+
+            @Override
+            public void onBindViewHolder(BaseHolder holder, int position) {
+                holder.refreshData(data.get(position), position);
+            }
+
+            @Override
+            public int getItemCount() {
+                return data.size();
+            }
+        }
+
+
+    }
+
+
+    /**
+     * 通用子条目hodler
+     */
+    private class ItemViewHolder extends BaseHolder<Integer> {
+
+        private ImageView imageview_item;
+
+        public ItemViewHolder(int viewId, ViewGroup parent, int viewType) {
+            super(viewId, parent, viewType);
+            imageview_item = (ImageView) itemView.findViewById(R.id.imageview_item);
+            ViewGroup.LayoutParams layoutParams = imageview_item.getLayoutParams();
+            layoutParams.width = layoutParams.height = screenWidth / 3;
+            imageview_item.setLayoutParams(layoutParams);
+        }
+
+        @Override
+        public void refreshData(Integer data, final int position) {
+            imageview_item.setBackgroundResource(data);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "position:" + position, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+}
