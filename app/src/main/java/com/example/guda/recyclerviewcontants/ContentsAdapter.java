@@ -69,7 +69,7 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     //重写RecyclerView.Adapter的三个方法p124
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contents_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contents,parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

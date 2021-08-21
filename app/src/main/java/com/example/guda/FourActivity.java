@@ -60,7 +60,7 @@ public class FourActivity extends BaseActivity {
 
         //RecyclerView滚动屏幕
         initContents();//滚动数据初始化
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_contents);
         //设置布局方式
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

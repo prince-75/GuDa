@@ -8,7 +8,7 @@
 
     <!--滚动控件布局文件-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_datasets"
+        android:id="@+id/recyclerview_datasets"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--外层一个竖直排列的RecyclerView显示格式-->
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/item_recyclerview_datasets"
     xmlns:android="http://schemas.android.com/apk/res/android"
