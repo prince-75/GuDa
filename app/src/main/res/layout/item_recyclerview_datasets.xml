@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--外层一个竖直排列的RecyclerView显示格式-->
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/item_recyclerview_datasets"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_height="wrap_content"
-    />
+    android:layout_height="match_parent">
+<!--外层竖直排列的RecyclerView显示格式(铺满宽度）-->
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_recyclerview_datasets_lashen"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        />
 
+</LinearLayout>

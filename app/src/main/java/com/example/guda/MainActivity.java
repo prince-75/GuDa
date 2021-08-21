@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guda.recyclerviewdatasets.BaseHolder;
@@ -27,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private Datasets data;//数据
     private int screenWidth;//屏幕宽度
     private int HORIZONTAL_VIEW_X = 0;//水平RecyclerView滑动的距离
+    private TextView mTextView;
 
     //创建菜单
     @Override
@@ -122,6 +125,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     /**
      * 计算屏幕的宽度
      */
@@ -138,17 +142,15 @@ public class MainActivity extends BaseActivity {
      */
     private void initData() {
         data = new Datasets();
-        ArrayList<Integer> resourceList = new ArrayList<>();
+        ArrayList<Integer> datasetsList = new ArrayList<>();
+        datasetsList.add(R.drawable.datasets1);
+        datasetsList.add(R.drawable.datasets2);
+        datasetsList.add(R.drawable.datasets3);
+        datasetsList.add(R.drawable.datasets4);
+        datasetsList.add(R.drawable.datasets5);
+        datasetsList.add(R.drawable.datasets6);
 
-        resourceList.add(R.drawable.datasets1);
-        resourceList.add(R.drawable.datasets2);
-        resourceList.add(R.drawable.datasets3);
-        resourceList.add(R.drawable.datasets4);
-        resourceList.add(R.drawable.datasets5);
-        resourceList.add(R.drawable.datastes6);
-
-        data.gridData = data.horizontalData = data.verticalData = resourceList;
-
+        data.gridData = data.horizontalData = data.verticalData = datasetsList;
     }
 
     /**
@@ -160,6 +162,7 @@ public class MainActivity extends BaseActivity {
         recylcerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         //添加了一个蓝色背景
         recylcerview.setBackgroundResource(R.color.blue);
+        //初始化外层RecyclerView的Adapter
         recylcerview.setAdapter(new RecyclerViewAdapter());
     }
 
@@ -224,7 +227,7 @@ public class MainActivity extends BaseActivity {
 
         public GridViewHolder(int viewId, ViewGroup parent, int viewType) {
             super(viewId, parent, viewType);
-            item_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview_datasets);
+            item_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview_datasets_lashen);
 
         }
 
