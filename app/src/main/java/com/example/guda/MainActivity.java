@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity {
         ArrayList<MyData> rootList = new ArrayList<MyData>();
 //      条目1
         MyData myData1 = new MyData();
-        String s1 = "拉伸";
+        String s1 = "拉伸训练";
         ArrayList<Integer> tuList1 = new ArrayList<>();
         tuList1.add(R.drawable.datasets1);
         tuList1.add(R.drawable.datasets2);
@@ -157,7 +157,7 @@ public class MainActivity extends BaseActivity {
         rootList.add(myData1);
 //      条目2
         MyData myData2 = new MyData();
-        String s2 = "腿部";
+        String s2 = "腿部训练";
         ArrayList<Integer> tuList2 = new ArrayList<>();
         tuList2.add(R.drawable.datasets4);
         tuList2.add(R.drawable.datasets5);
@@ -167,7 +167,7 @@ public class MainActivity extends BaseActivity {
         rootList.add(myData2);
 //      条目1
         MyData myData3 = new MyData();
-        String s3 = "腰腹";
+        String s3 = "腰腹训练";
         ArrayList<Integer> tuList3 = new ArrayList<>();
         tuList3.add(R.drawable.datasets1);
         tuList3.add(R.drawable.datasets2);
@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity {
         rootList.add(myData3);
 //      条目2
         MyData myData4 = new MyData();
-        String s4 = "核心力量";
+        String s4 = "核心训练";
         ArrayList<Integer> tuList4 = new ArrayList<>();
         tuList4.add(R.drawable.datasets4);
         tuList4.add(R.drawable.datasets5);
@@ -185,6 +185,26 @@ public class MainActivity extends BaseActivity {
         myData4.setTitle(s4);
         myData4.setArrayList(tuList4);
         rootList.add(myData4);
+//      条目1
+        MyData myData5 = new MyData();
+        String s5 = "柔韧训练";
+        ArrayList<Integer> tuList5 = new ArrayList<>();
+        tuList5.add(R.drawable.datasets1);
+        tuList5.add(R.drawable.datasets2);
+        tuList5.add(R.drawable.datasets3);
+        myData5.setArrayList(tuList5);
+        myData5.setTitle(s5);
+        rootList.add(myData5);
+//      条目2
+        MyData myData6 = new MyData();
+        String s6 = "力量训练";
+        ArrayList<Integer> tuList6 = new ArrayList<>();
+        tuList6.add(R.drawable.datasets4);
+        tuList6.add(R.drawable.datasets5);
+        tuList6.add(R.drawable.datasets6);
+        myData6.setTitle(s6);
+        myData6.setArrayList(tuList6);
+        rootList.add(myData6);
 
         return rootList;
 
