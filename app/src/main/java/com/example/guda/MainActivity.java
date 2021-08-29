@@ -298,6 +298,8 @@ public class MainActivity extends BaseActivity {
             //用于申明外层RecyclerView的子条目显示格式
             hor_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview);
             tvMyTitle = (TextView) itemView.findViewById(R.id.tvMyTitle);
+            Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/typeface.ttf");
+            tvMyTitle.setTypeface(typeFace);
 //            tvMyContent = (TextView) itemView.findViewById(R.id.tvMyContent);
 
         }
