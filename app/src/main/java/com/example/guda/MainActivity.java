@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.guda.recyclerviewdatasets.BaseHolder;
 import com.example.guda.recyclerviewdatasets.Datasets;
+import com.example.guda.recyclerviewdatasets.MyData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     //滚动目录实列申明
     private RecyclerView recylcerview;//外层recyclerview
-    private Datasets data;//数据
+    private ArrayList<MyData> data;//假数据
     private int screenWidth;//屏幕宽度
     private int HORIZONTAL_VIEW_X = 0;//水平RecyclerView滑动的距离
     private TextView mTextView;
@@ -140,17 +142,52 @@ public class MainActivity extends BaseActivity {
     /**
      * 初始化显示数据
      */
-    private void initData() {
-        data = new Datasets();
-        ArrayList<Integer> datasetsList = new ArrayList<>();
-        datasetsList.add(R.drawable.datasets1);
-        datasetsList.add(R.drawable.datasets2);
-        datasetsList.add(R.drawable.datasets3);
-        datasetsList.add(R.drawable.datasets4);
-        datasetsList.add(R.drawable.datasets5);
-        datasetsList.add(R.drawable.datasets6);
+    private ArrayList<MyData> initData() {
+//      最外层的list
+        ArrayList<MyData> rootList = new ArrayList<MyData>();
+//      条目1
+        MyData myData1 = new MyData();
+        String s1 = "拉伸";
+        ArrayList<Integer> tuList1 = new ArrayList<>();
+        tuList1.add(R.drawable.datasets1);
+        tuList1.add(R.drawable.datasets2);
+        tuList1.add(R.drawable.datasets3);
+        myData1.setArrayList(tuList1);
+        myData1.setTitle(s1);
+        rootList.add(myData1);
+//      条目2
+        MyData myData2 = new MyData();
+        String s2 = "腿部";
+        ArrayList<Integer> tuList2 = new ArrayList<>();
+        tuList2.add(R.drawable.datasets4);
+        tuList2.add(R.drawable.datasets5);
+        tuList2.add(R.drawable.datasets6);
+        myData2.setTitle(s2);
+        myData2.setArrayList(tuList2);
+        rootList.add(myData2);
+//      条目1
+        MyData myData3 = new MyData();
+        String s3 = "腰腹";
+        ArrayList<Integer> tuList3 = new ArrayList<>();
+        tuList3.add(R.drawable.datasets1);
+        tuList3.add(R.drawable.datasets2);
+        tuList3.add(R.drawable.datasets3);
+        myData3.setArrayList(tuList3);
+        myData3.setTitle(s3);
+        rootList.add(myData3);
+//      条目2
+        MyData myData4 = new MyData();
+        String s4 = "核心力量";
+        ArrayList<Integer> tuList4 = new ArrayList<>();
+        tuList4.add(R.drawable.datasets4);
+        tuList4.add(R.drawable.datasets5);
+        tuList4.add(R.drawable.datasets6);
+        myData4.setTitle(s4);
+        myData4.setArrayList(tuList4);
+        rootList.add(myData4);
 
-        data.gridData = data.horizontalData = data.verticalData = datasetsList;
+        return rootList;
+
     }
 
     /**
@@ -162,52 +199,63 @@ public class MainActivity extends BaseActivity {
         recylcerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         //添加了一个蓝色背景
         recylcerview.setBackgroundResource(R.color.blue);
+        //实例数据初始化
+        ArrayList<MyData> rootlist = initData();
         //初始化外层RecyclerView的Adapter
-        recylcerview.setAdapter(new RecyclerViewAdapter());
+        recylcerview.setAdapter(new RecyclerViewAdapter(rootlist,MainActivity.this));
+    }
+
+    /**
+     * 将dp转化为px
+     */
+    private int dip2px(float dip) {
+        float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
+        return (int) (v + 0.5f);
     }
 
     /**
      * 外层RecyclerView的Adapter
+     * 外层的RecyclerView
      */
     private class RecyclerViewAdapter extends RecyclerView.Adapter<BaseHolder> {
+        private ArrayList<MyData> rootList = null;
+        private Context context;
+
+        public RecyclerViewAdapter(ArrayList<MyData> rootList, Context context) {
+            this.rootList = rootList;
+            this.context = context;
+        }
+
         //条目样式
-        private final int GRID_VIEW = 1002;
+        private final int HORIZONTAL_VIEW = 1000;
 
         @Override
         public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new GridViewHolder(R.layout.item_recyclerview_datasets, parent, viewType);
+            switch (viewType) {
+                case HORIZONTAL_VIEW:
+                    return new HorizontalViewHolder(R.layout.item_recyclerview_datasets, parent, viewType);
+
+            }
+            return null;
         }
 
         @Override
         public void onBindViewHolder(BaseHolder holder, int position) {
-            holder.refreshData(data.gridData, position);
+            if (holder instanceof HorizontalViewHolder) {
+                holder.refreshData(rootList, position);
+            }
         }
-
-        @Override
-        /**
-         * 当Item出现时调用此方法
-         */
-        public void onViewAttachedToWindow(BaseHolder holder) {
-            Log.i("Prince75", "onViewAttachedToWindow:" + holder.getClass().toString());
-        }
-
-        @Override
-        /**
-         * 当Item被回收时调用此方法
-         */
-        public void onViewDetachedFromWindow(BaseHolder holder) {
-            Log.i("Prince75", "onViewDetachedFromWindow:" + holder.getClass().toString());
-        }
-
 
         @Override
         public int getItemCount() {
-            return 2 + data.verticalData.size();
+            return rootList.size();
         }
 
         @Override
         public int getItemViewType(int position) {
-            return GRID_VIEW;
+            return HORIZONTAL_VIEW;
+
+
         }
     }
 
@@ -215,36 +263,64 @@ public class MainActivity extends BaseActivity {
     //----------------------外层子条目Holder----------------------------
 
     /**
-     * GridView形状的RecyclerView
+     * 嵌套的水平RecyclerView
+     * 绑定的外层的RecyclerView的条目
      */
-    private class GridViewHolder extends BaseHolder<List<Integer>> {
+    private class HorizontalViewHolder extends BaseHolder<List<MyData>> {
+        private RecyclerView hor_recyclerview;
+        private TextView tvMyTitle;
+        private TextView tvMyContent;
 
-        private RecyclerView item_recyclerview;
+        private List<MyData> data;
 
-        private final int ONE_LINE_SHOW_NUMBER = 3;
-
-        private List<Integer> data;
-
-        public GridViewHolder(int viewId, ViewGroup parent, int viewType) {
+        public HorizontalViewHolder(int viewId, ViewGroup parent, int viewType) {
             super(viewId, parent, viewType);
-            item_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview_datasets_lashen);
+            //用于申明外层RecyclerView的子条目显示格式
+            hor_recyclerview = (RecyclerView) itemView.findViewById(R.id.item_recyclerview);
+            tvMyTitle = (TextView) itemView.findViewById(R.id.tvMyTitle);
+//            tvMyContent = (TextView) itemView.findViewById(R.id.tvMyContent);
 
         }
 
         @Override
-        public void refreshData(List<Integer> data, int position) {
-            super.refreshData(data, position);
+        public void refreshData(List<MyData> data, int position) {
             this.data = data;
-            //每行显示3个，水平显示
-            item_recyclerview.setLayoutManager(new GridLayoutManager(MainActivity.this, ONE_LINE_SHOW_NUMBER, LinearLayoutManager.VERTICAL, false));
-            //设置个背景色
-            item_recyclerview.setBackgroundResource(R.color.blue);
-            //设置Adapter
-            item_recyclerview.setAdapter(new GridAdapter());
+            ViewGroup.LayoutParams layoutParams = hor_recyclerview.getLayoutParams();
+            //高度等于＝条目的高度＋ 10dp的间距 ＋ 10dp（为了让条目居中）
+            layoutParams.height = screenWidth / 3 + dip2px(20);
+            hor_recyclerview.setLayoutParams(layoutParams);
+            hor_recyclerview.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            hor_recyclerview.setBackgroundResource(R.color.blue);
+
+
+            String text = data.get(position).getTitle();
+            String content = data.get(position).getContent();
+//          判断如果仿图片的listbu存在，就隐藏hor_recyclerview
+            if(null== data.get(position).getArrayList()) {
+                hor_recyclerview.setVisibility(View.GONE);
+            }
+            //加固定后缀
+//            tvMyTitle.setText(text + ">>>");
+//            tvMyContent.setText(content+"666");
+            //不加后缀
+            tvMyTitle.setText(text);
+
+            ArrayList<Integer> intlist = data.get(position).getArrayList();
+            hor_recyclerview.setAdapter(new HorizontalAdapter(intlist, MainActivity.this));
         }
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>内层的RecyclerView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+        /**
+         * 内层的RecyclerView
+         */
+        private class HorizontalAdapter extends RecyclerView.Adapter<BaseHolder> {
+            private ArrayList<Integer> intlist;
+            private Context context;
 
-        private class GridAdapter extends RecyclerView.Adapter<BaseHolder> {
+            private HorizontalAdapter(ArrayList<Integer> intlist, Context context) {
+                this.intlist = intlist;
+                this.context = context;
+            }
 
             @Override
             public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -253,24 +329,26 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onBindViewHolder(BaseHolder holder, int position) {
-                holder.refreshData(data.get(position), position);
+                holder.refreshData(intlist, position);
             }
 
             @Override
             public int getItemCount() {
-                return data.size();
+                if (null != intlist) {
+                    return intlist.size();
+                }else{
+                    return 0;
+                }
+
             }
         }
-
-
     }
-
-    //----------------------内层子条目Holder----------------------------
 
     /**
      * 通用子条目hodler
+     * 绑定内层RecyclerView的条目
      */
-    private class ItemViewHolder extends BaseHolder<Integer> {
+    private class ItemViewHolder extends BaseHolder<ArrayList<Integer>> {
 
         private ImageView imageview_item;
 
@@ -278,20 +356,19 @@ public class MainActivity extends BaseActivity {
             super(viewId, parent, viewType);
             imageview_item = (ImageView) itemView.findViewById(R.id.imageview_item);
             ViewGroup.LayoutParams layoutParams = imageview_item.getLayoutParams();
-            layoutParams.width = layoutParams.height = screenWidth / 3;//一行三个
+            layoutParams.width = layoutParams.height = screenWidth / 3;
             imageview_item.setLayoutParams(layoutParams);
         }
 
         @Override
-        public void refreshData(Integer data, final int position) {
-            imageview_item.setBackgroundResource(data);
+        public void refreshData(ArrayList<Integer> intlist, int position) {
+            super.refreshData(intlist, position);
+            if(intlist==null) {
+                imageview_item.setVisibility(View.GONE);
+            }
+            Integer intPosition = intlist.get(position);
+            imageview_item.setBackgroundResource(intPosition);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "position:" + position, Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 
