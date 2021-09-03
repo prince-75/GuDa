@@ -1,15 +1,11 @@
 package com.example.guda;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.guda.recyclerviewcontants.Contents;
-import com.example.guda.recyclerviewcontants.ContentsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,14 +55,14 @@ public class FourActivity extends BaseActivity {
 //        listView.setAdapter(adapter);
 
         //RecyclerView滚动屏幕
-        initContents();//滚动数据初始化
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_contents);
-        //设置布局方式
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
-        ContentsAdapter adapter = new ContentsAdapter(contentsList);
-        recyclerView.setAdapter(adapter);
+//        initContents();//滚动数据初始化
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_contents);
+//        //设置布局方式
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+////        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
+//        ContentsAdapter adapter = new ContentsAdapter(this, contentsList);
+//        recyclerView.setAdapter(adapter);
         //获得屏幕、按钮高度
 //        int screenWidth = getWindowManager().getDefaultDisplay().getWidth(); // 屏幕宽（像素，如：480px）
 //        int screenHeight = getWindowManager().getDefaultDisplay().getHeight(); // 屏幕高（像素，如：800p）
@@ -81,32 +77,32 @@ public class FourActivity extends BaseActivity {
 
     }
 
-    private void initContents(){
-//        for(int i=0;i<2;i++){
-            Contents yundongquanzi = new Contents("运动圈子",R.drawable.gerenziliao);
-            contentsList.add(yundongquanzi);
-            Contents wodeziliao = new Contents("我的资料",R.drawable.gerenziliao);
-            contentsList.add(wodeziliao);
-            Contents yundongjihua = new Contents("运动计划",R.drawable.gerenziliao);
-            contentsList.add(yundongjihua);
-            Contents jiankangfenxi = new Contents("健康分析",R.drawable.gerenziliao);
-            contentsList.add(jiankangfenxi);
-            Contents lianxikefu = new Contents("联系客服",R.drawable.gerenziliao);
-            contentsList.add(lianxikefu);
-            Contents changyonglianxiren = new Contents("常用联系人",R.drawable.gerenziliao);
-            contentsList.add(changyonglianxiren);
-            Contents wodeshoucang = new Contents("我的收藏",R.drawable.gerenziliao);
-            contentsList.add(wodeshoucang);
-            Contents shenqingrenzheng = new Contents("申请认证",R.drawable.gerenziliao);
-            contentsList.add(shenqingrenzheng);
-            Contents yonghuyaoqing = new Contents("用户邀请",R.drawable.gerenziliao);
-            contentsList.add(yonghuyaoqing);
-            Contents hezuoyixiang = new Contents("合作意向",R.drawable.gerenziliao);
-            contentsList.add(hezuoyixiang);
-            Contents APPxinxi = new Contents("APP信息",R.drawable.gerenziliao);
-            contentsList.add(APPxinxi);
-//        }
-    }
+//    private void initContents(){
+////        for(int i=0;i<2;i++){
+//            Contents yundongquanzi = new Contents("运动圈子",R.drawable.gerenziliao);
+//            contentsList.add(yundongquanzi);
+//            Contents wodeziliao = new Contents("我的资料",R.drawable.gerenziliao);
+//            contentsList.add(wodeziliao);
+//            Contents yundongjihua = new Contents("运动计划",R.drawable.gerenziliao);
+//            contentsList.add(yundongjihua);
+//            Contents jiankangfenxi = new Contents("健康分析",R.drawable.gerenziliao);
+//            contentsList.add(jiankangfenxi);
+//            Contents lianxikefu = new Contents("联系客服",R.drawable.gerenziliao);
+//            contentsList.add(lianxikefu);
+//            Contents changyonglianxiren = new Contents("常用联系人",R.drawable.gerenziliao);
+//            contentsList.add(changyonglianxiren);
+//            Contents wodeshoucang = new Contents("我的收藏",R.drawable.gerenziliao);
+//            contentsList.add(wodeshoucang);
+//            Contents shenqingrenzheng = new Contents("申请认证",R.drawable.gerenziliao);
+//            contentsList.add(shenqingrenzheng);
+//            Contents yonghuyaoqing = new Contents("用户邀请",R.drawable.gerenziliao);
+//            contentsList.add(yonghuyaoqing);
+//            Contents hezuoyixiang = new Contents("合作意向",R.drawable.gerenziliao);
+//            contentsList.add(hezuoyixiang);
+//            Contents APPxinxi = new Contents("APP信息",R.drawable.gerenziliao);
+//            contentsList.add(APPxinxi);
+////        }
+//    }
 
 
 }
