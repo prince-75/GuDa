@@ -30,8 +30,6 @@ import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.ByteBufferList;
 import com.koushikdutta.async.DataEmitter;
 import com.koushikdutta.async.http.body.MultipartFormDataBody;
-import com.koushikdutta.async.http.body.UrlEncodedFormBody;
-import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.body.Part;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
@@ -345,6 +343,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                                         String fileName = URLDecoder.decode(new String(bb
                                                 .getAllByteArray()), "UTF-8");
                                         fileUploadHolder.setFileName(fileName);
+//                                        Toast.makeText(ThirdActivity.this, fileName, Toast.LENGTH_SHORT).show();
                                     } catch (UnsupportedEncodingException e) {
                                         e.printStackTrace();
                                     }
@@ -370,7 +369,8 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            File file = new File(videoPath, fileName);
+            String dir = videoPath.replace(fileName, "");
+            File file = new File(dir, fileName);
             if (file.exists() && file.isFile()) {
                 try {
                     response.getHeaders().add("Content-Disposition", "attachment;filename=" +
