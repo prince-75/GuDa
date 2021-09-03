@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--    android:orientation="horizontal"-->
-
-
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="资讯"/>
     <!--自定义标题栏返回和编辑按钮-->
 <!--    <com.example.guda.TitleLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        />-->
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_contents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
     <!--自定义导航栏四个按钮-->
     <include layout="@layout/activity_bottom_interface"/>
 
@@ -24,8 +35,38 @@
 <!--        android:textSize="28dp"/>-->
 
 
+<!--<androidx.recyclerview.widget.RecyclerView-->
+<!--    android:id="@+id/information_list"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--&gt;</androidx.recyclerview.widget.RecyclerView>-->
+
+<!--    <LinearLayout-->
+<!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        tools:context="com.hs.example.exampleapplication.ListViewActivity">-->
 
 
+
+<!--        <ListView-->
+<!--            android:id="@+id/lv_sele"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:entries="@array/news">-->
+
+<!--        </ListView>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--<TextView-->
+<!--    android:id="@+id/textView"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="TEST"/>-->
     <!--
             android:layout_weight="1"-->
 <!--    <TextView-->
@@ -50,12 +91,12 @@
 <!--        android:text="必应搜索"-->
 <!--        />-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/botton_intent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/botton_intent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            />-->
 
 
 
@@ -89,4 +130,4 @@
     去MainActivity-->
 
 
-</RelativeLayout>
+</LinearLayout>
