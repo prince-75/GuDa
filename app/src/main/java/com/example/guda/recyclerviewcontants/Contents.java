@@ -3,10 +3,12 @@ package com.example.guda.recyclerviewcontants;
 
 public class Contents {
     private  String name;
+    private String uri;
     private int imageId;
-    public Contents(String name,int imageId){
-        this.name=name;//名字
+    public Contents(String name,int imageId, String uri){
+        this.name=name;//标题
         this.imageId=imageId;//对应的图片
+        this.uri=uri;//网址
     }
     public String getName(){
         return name;
@@ -14,4 +16,5 @@ public class Contents {
     public int getImageId(){
         return imageId;
     }
+    public String getUri() {return uri; }
 }
