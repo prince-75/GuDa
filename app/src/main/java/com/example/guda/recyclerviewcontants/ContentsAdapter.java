@@ -1,6 +1,9 @@
 //创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
 package com.example.guda.recyclerviewcontants;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +50,7 @@ public class ContentsAdapter extends ArrayAdapter<Contents> {
 //RecyclerView版本
 public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHolder>{
     private List<Contents> mContentsList;
+    private Context context;
     //内部类ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView contentsImage;
@@ -61,9 +65,10 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     }
 
     //构造函数ContentsAdapter
-    public ContentsAdapter(List<Contents> contentsList){
+    public ContentsAdapter(Context context, List<Contents> contentsList){
         //全局变量传入数据
         mContentsList = contentsList;
+        this.context = context;
     }
 
     //重写RecyclerView.Adapter的三个方法p124
@@ -78,6 +83,14 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
         Contents contents = mContentsList.get(position);
         holder.contentsImage.setImageResource(contents.getImageId());
         holder.contentsName.setText(contents.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(contents.getUri()));
+                context.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount(){
