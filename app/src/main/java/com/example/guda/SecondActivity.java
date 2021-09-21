@@ -9,15 +9,15 @@ import android.widget.ListView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.guda.recyclerviewcontants.Contents;
-import com.example.guda.recyclerviewcontants.ContentsAdapter;
+import com.example.guda.recyclerviewinformation.Information;
+import com.example.guda.recyclerviewinformation.InformationAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SecondActivity extends BaseActivity {
 
-    private List<Contents> contentsList = new ArrayList<>();
+    private List<Information> informationList = new ArrayList<>();
     ListView listV ;
     ArrayList<String> selected = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class SecondActivity extends BaseActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 //        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//实现横向滚动
-        ContentsAdapter adapter = new ContentsAdapter(this, contentsList);
+        InformationAdapter adapter = new InformationAdapter(this, informationList);
         recyclerView.setAdapter(adapter);
 
 
@@ -69,9 +69,9 @@ public class SecondActivity extends BaseActivity {
 
 
     private void initContents(){
-        contentsList.add(new Contents("一弯腰就腰痛？或预警着这几种腰椎疾病", R.drawable.wanyao, "https://mp.weixin.qq.com/s?__biz=MzIxMjI4OTk5OQ==&mid=2247492195&idx=1&sn=10027a2cfb86edf8921f7255c6e61ddb&chksm=974af2c3a03d7bd515c6ed94cb00b9b9ca8fc4f7cffcb932232c100f851bf00ce02aa847712f&token=523158986&lang=zh_CN#rd"));
-        contentsList.add(new Contents("心律失常竟与颈椎病有关！专家提醒，科学的康复治疗可防心律失常加重", R.drawable.jingzhui, "https://mp.weixin.qq.com/s?__biz=MzIxMjI4OTk5OQ==&mid=2247492056&idx=1&sn=56e03dae748569bc33b3e8de8e6b0a24&chksm=974af178a03d786ef6fa7d742a7c86d44f8c05f9796984aebcbf0132bc6832429fed3d48e9cd&token=1451748677&lang=zh_CN#rd"));
-        contentsList.add(new Contents("久坐、长期少运动？当心你的身体这样狠狠地报复你", R.drawable.jiuzuo, "https://mp.weixin.qq.com/s/OGjuytkXjlmWhIxBb3_7NA"));
+        informationList.add(new Information("一弯腰就腰痛？或预警着这几种腰椎疾病", R.drawable.wanyao, "https://mp.weixin.qq.com/s?__biz=MzIxMjI4OTk5OQ==&mid=2247492195&idx=1&sn=10027a2cfb86edf8921f7255c6e61ddb&chksm=974af2c3a03d7bd515c6ed94cb00b9b9ca8fc4f7cffcb932232c100f851bf00ce02aa847712f&token=523158986&lang=zh_CN#rd"));
+        informationList.add(new Information("心律失常竟与颈椎病有关！专家提醒，科学的康复治疗可防心律失常加重", R.drawable.jingzhui, "https://mp.weixin.qq.com/s?__biz=MzIxMjI4OTk5OQ==&mid=2247492056&idx=1&sn=56e03dae748569bc33b3e8de8e6b0a24&chksm=974af178a03d786ef6fa7d742a7c86d44f8c05f9796984aebcbf0132bc6832429fed3d48e9cd&token=1451748677&lang=zh_CN#rd"));
+        informationList.add(new Information("久坐、长期少运动？当心你的身体这样狠狠地报复你", R.drawable.jiuzuo, "https://mp.weixin.qq.com/s/OGjuytkXjlmWhIxBb3_7NA"));
     }
 
 //    @Override
@@ -101,18 +101,18 @@ public class SecondActivity extends BaseActivity {
 
 //    private void initContents(){
 ////        for(int i=0;i<2;i++){
-//        Contents yundongquanzi = new Contents("运动圈子",R.drawable.gerenziliao);
-//        contentsList.add(yundongquanzi);
-//        Contents wodeziliao = new Contents("我的资料",R.drawable.gerenziliao);
-//        contentsList.add(wodeziliao);
-//        Contents yundongjihua = new Contents("运动计划",R.drawable.gerenziliao);
-//        contentsList.add(yundongjihua);
-//        Contents jiankangfenxi = new Contents("健康分析",R.drawable.gerenziliao);
-//        contentsList.add(jiankangfenxi);
-//        Contents lianxikefu = new Contents("联系客服",R.drawable.gerenziliao);
-//        contentsList.add(lianxikefu);
-//        Contents changyonglianxiren = new Contents("常用联系人",R.drawable.gerenziliao);
-//        contentsList.add(changyonglianxiren);
+//        Information yundongquanzi = new Information("运动圈子",R.drawable.gerenziliao);
+//        informationList.add(yundongquanzi);
+//        Information wodeziliao = new Information("我的资料",R.drawable.gerenziliao);
+//        informationList.add(wodeziliao);
+//        Information yundongjihua = new Information("运动计划",R.drawable.gerenziliao);
+//        informationList.add(yundongjihua);
+//        Information jiankangfenxi = new Information("健康分析",R.drawable.gerenziliao);
+//        informationList.add(jiankangfenxi);
+//        Information lianxikefu = new Information("联系客服",R.drawable.gerenziliao);
+//        informationList.add(lianxikefu);
+//        Information changyonglianxiren = new Information("常用联系人",R.drawable.gerenziliao);
+//        informationList.add(changyonglianxiren);
 //
 ////        }
 //    }

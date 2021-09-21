@@ -1,6 +1,9 @@
 //创建一个自定义适配器，泛型指向Contents类，实例代码在FourActivity类,有ListView和RecyclerView两个版本，根据需要打开
-package com.example.guda.recyclerviewcontants;
+package com.example.guda.recyclerviewinformation;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +17,10 @@ import com.example.guda.R;
 import java.util.List;
 //ListView控件版本
 /*
-public class ContentsAdapter extends ArrayAdapter<Content> {
+public class InformationAdapter extends ArrayAdapter<Information> {
     private int resourceId;
     //传入上下文、布局、数据
-    public ContentsAdapter(Context context, int textViewResourceId, List<Content> objects) {
+    public InformationAdapter(Context context, int textViewResourceId, List<Information> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
@@ -25,7 +28,7 @@ public class ContentsAdapter extends ArrayAdapter<Content> {
     @Override
     //在每个子项被滚动到屏幕内的时候被调用
     public View getView(int position, View convertView, ViewGroup parent) {
-        Content contents = getItem(position);
+        Information contents = getItem(position);
         View view;
 
         if(convertView == null){
@@ -45,8 +48,9 @@ public class ContentsAdapter extends ArrayAdapter<Content> {
  */
 
 //RecyclerView版本
-public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHolder>{
-    private List<Content> mContentList;
+public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.ViewHolder>{
+    private List<Information> mInformationList;
+    private Context context;
     //内部类ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView contentsImage;
@@ -61,9 +65,10 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     }
 
     //构造函数ContentsAdapter
-    public ContentsAdapter(List<Content> contentList){
+    public InformationAdapter(Context context, List<Information> informationList){
         //全局变量传入数据
-        mContentList = contentList;
+        mInformationList = informationList;
+        this.context = context;
     }
 
     //重写RecyclerView.Adapter的三个方法p124
@@ -75,12 +80,20 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.ViewHo
     }
     @Override
     public void onBindViewHolder(ViewHolder holder,int position){
-        Content content = mContentList.get(position);
-        holder.contentsImage.setImageResource(content.getImageId());
-        holder.contentsName.setText(content.getName());
+        Information information = mInformationList.get(position);
+        holder.contentsImage.setImageResource(information.getImageId());
+        holder.contentsName.setText(information.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(information.getUri()));
+                context.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount(){
-        return mContentList.size();
+        return mInformationList.size();
     }
 }
