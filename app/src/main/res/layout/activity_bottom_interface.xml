@@ -32,15 +32,15 @@
         android:text="发现"
         android:textColor="#000"
         android:layout_weight="1"/>
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/button3"
-        android:background="#fff"
-        android:text="数据"
-        android:textColor="#000"
-        android:layout_weight="1"/>
+<!--    <Button-->
+<!--        android:id="@+id/button3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:drawableTop="@drawable/button3"-->
+<!--        android:background="#fff"-->
+<!--        android:text="数据"-->
+<!--        android:textColor="#000"-->
+<!--        android:layout_weight="1"/>-->
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"

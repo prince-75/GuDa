@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
         //导航栏按钮
         //setOnClickListener：事件监听器
         Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
+//        Button button3 = (Button) findViewById(R.id.button3);
         Button button4 = (Button) findViewById(R.id.button4);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,16 +84,16 @@ public class MainActivity extends BaseActivity {
                 //finish();
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
-                //由一向三实现数据传递
-//                intent.putExtra("param1", "data1");
-//                intent.putExtra("param2", "data2");
-                startActivity(intent);
-            }
-        });
+//        button3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+//                //由一向三实现数据传递
+////                intent.putExtra("param1", "data1");
+////                intent.putExtra("param2", "data2");
+//                startActivity(intent);
+//            }
+//        });
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

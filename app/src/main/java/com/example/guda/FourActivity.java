@@ -29,7 +29,7 @@ public class FourActivity extends BaseActivity {
         //导航栏按钮
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
+//        Button button3 = (Button) findViewById(R.id.button3);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -44,13 +44,13 @@ public class FourActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        button3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
-                startActivity(intent);
-            }
-        });
+//        button3.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(FourActivity.this,ThirdActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //ListView滚动屏幕
 //        initContents();//滚动数据初始化
