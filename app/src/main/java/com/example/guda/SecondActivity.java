@@ -34,7 +34,7 @@ public class SecondActivity extends BaseActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(SecondActivity.this,MainActivity.class);
+                Intent intent = new Intent(com.example.guda.SecondActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,7 +48,7 @@ public class SecondActivity extends BaseActivity {
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(SecondActivity.this,FourActivity.class);
+                Intent intent = new Intent(com.example.guda.SecondActivity.this,FourActivity.class);
                 startActivity(intent);
             }
         });

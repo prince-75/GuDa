@@ -147,7 +147,7 @@ public class FileUtils {
             case FileType.TYPE_AUDIO:
                 return "audio/*";
             case FileType.TYPE_VIDEO:
-                return "video/*";
+                return "raw/video/*";
             case FileType.TYPE_WEB:
             case FileType.TYPE_TEXT:
                 return "text/*";
@@ -237,7 +237,7 @@ public class FileUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("oneshot", 0);
         intent.putExtra("configchange", 0);
-        intent.setDataAndType(uri, "video/*");
+        intent.setDataAndType(uri, "raw/video/*");
         return intent;
     }
 

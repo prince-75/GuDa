@@ -1,7 +1,9 @@
 package com.example.guda;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.guda.recyclerviewdatasets.BaseHolder;
 import com.example.guda.recyclerviewdatasets.MyData;
+import com.example.guda.utils.VideoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class MainActivity extends BaseActivity {
 //                break;
 //            default:
 //        }
+
 //        return true;
 //    }
 
@@ -76,21 +79,12 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
                 //toast：弹出提醒
-                Toast.makeText(MainActivity.this, "哇，你学会转换界面了哟，真棒", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "哇，你学会转换界面了哟，真棒", Toast.LENGTH_SHORT).show();
                 //销毁当前活动(和back一样用）
                 //finish();
             }
         });
-//        button3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
-//                //由一向三实现数据传递
-////                intent.putExtra("param1", "data1");
-////                intent.putExtra("param2", "data2");
-//                startActivity(intent);
-//            }
-//        });
+
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,24 +97,6 @@ public class MainActivity extends BaseActivity {
         basicParamInit();//计算屏幕宽度，用于计算一行放几个button
         initData();//数据初始化
         initRecyclerView();//外层recyclerView格式初始化
-
-        //隐式Intent访问外部网页
-/*
-        Button button_intent = (Button) findViewById(R.id.button_intent);
-        button_intent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                button4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://github.com/prince-75/GuDa"));
-                        startActivity(intent);
-                    }
-                });
-            }
-        });
-*/
 
     }
 
@@ -147,60 +123,54 @@ public class MainActivity extends BaseActivity {
         String s1 = "拉伸训练";
         ArrayList<Integer> tuList1 = new ArrayList<>();
         tuList1.add(R.drawable.datasets1);
-        tuList1.add(R.drawable.datasets2);
-        tuList1.add(R.drawable.datasets3);
         myData1.setArrayList(tuList1);
         myData1.setTitle(s1);
+        myData1.setvideo(R.raw.first);
         rootList.add(myData1);
 //      条目2
         MyData myData2 = new MyData();
         String s2 = "腿部训练";
         ArrayList<Integer> tuList2 = new ArrayList<>();
-        tuList2.add(R.drawable.datasets4);
-        tuList2.add(R.drawable.datasets5);
-        tuList2.add(R.drawable.datasets6);
+        tuList2.add(R.drawable.datasets2);
         myData2.setTitle(s2);
         myData2.setArrayList(tuList2);
+        myData2.setvideo(R.raw.second);
         rootList.add(myData2);
 //      条目1
         MyData myData3 = new MyData();
         String s3 = "腰腹训练";
         ArrayList<Integer> tuList3 = new ArrayList<>();
-        tuList3.add(R.drawable.datasets1);
-        tuList3.add(R.drawable.datasets2);
         tuList3.add(R.drawable.datasets3);
         myData3.setArrayList(tuList3);
         myData3.setTitle(s3);
+        myData3.setvideo(R.raw.third);
         rootList.add(myData3);
 //      条目2
         MyData myData4 = new MyData();
         String s4 = "核心训练";
         ArrayList<Integer> tuList4 = new ArrayList<>();
         tuList4.add(R.drawable.datasets4);
-        tuList4.add(R.drawable.datasets5);
-        tuList4.add(R.drawable.datasets6);
         myData4.setTitle(s4);
         myData4.setArrayList(tuList4);
+        myData4.setvideo(R.raw.fouth);
         rootList.add(myData4);
 //      条目1
         MyData myData5 = new MyData();
         String s5 = "柔韧训练";
         ArrayList<Integer> tuList5 = new ArrayList<>();
-        tuList5.add(R.drawable.datasets1);
-        tuList5.add(R.drawable.datasets2);
-        tuList5.add(R.drawable.datasets3);
+        tuList5.add(R.drawable.datasets5);
         myData5.setArrayList(tuList5);
         myData5.setTitle(s5);
+        myData5.setvideo(R.raw.fifth);
         rootList.add(myData5);
 //      条目2
         MyData myData6 = new MyData();
         String s6 = "力量训练";
         ArrayList<Integer> tuList6 = new ArrayList<>();
-        tuList6.add(R.drawable.datasets4);
-        tuList6.add(R.drawable.datasets5);
         tuList6.add(R.drawable.datasets6);
         myData6.setTitle(s6);
         myData6.setArrayList(tuList6);
+        myData6.setvideo(R.raw.sixth);
         rootList.add(myData6);
 
         return rootList;
@@ -215,7 +185,7 @@ public class MainActivity extends BaseActivity {
         //竖直排列、正向排序
         recylcerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         //添加了一个蓝色背景
-        recylcerview.setBackgroundResource(R.color.blue);
+//        recylcerview.setBackgroundResource(R.color.blue);
         //实例数据初始化
         ArrayList<MyData> rootlist = initData();
         //初始化外层RecyclerView的Adapter
@@ -261,6 +231,26 @@ public class MainActivity extends BaseActivity {
             if (holder instanceof HorizontalViewHolder) {
                 holder.refreshData(rootList, position);
             }
+            MyData clicked = (MyData) rootList.get(position);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+//                    VideoView videoView = (VideoView) findViewById(R.id.main_video);
+//                    Uri uri = Uri.parse("android.resource://"+getPackageName() +"/" + clicked.getvideo());
+//                    videoView.setVideoURI(uri);
+                    intent.putExtra("videoUri", "android.resource://"+getPackageName() +"/" + clicked.getvideo());
+                    Resources myResources = context.getResources();
+                    String video = myResources.getString(clicked.getvideo());
+                    video = video.replace("res/raw/", "");
+                    video = video.replace(".mp4", "");
+                    intent.putExtra("videoName", video);
+//                    Toast.makeText(MainActivity.this, video,Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+
+                }
+            });
         }
 
         @Override
@@ -290,6 +280,7 @@ public class MainActivity extends BaseActivity {
 
         private List<MyData> data;
 
+        @SuppressLint("ResourceAsColor")
         public HorizontalViewHolder(int viewId, ViewGroup parent, int viewType) {
             super(viewId, parent, viewType);
             //用于申明外层RecyclerView的子条目显示格式
@@ -297,6 +288,7 @@ public class MainActivity extends BaseActivity {
             tvMyTitle = (TextView) itemView.findViewById(R.id.tvMyTitle);
             Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/typeface.ttf");
             tvMyTitle.setTypeface(typeFace);
+            tvMyTitle.setTextColor(R.color.black);
 //            tvMyContent = (TextView) itemView.findViewById(R.id.tvMyContent);
 
         }
@@ -309,7 +301,7 @@ public class MainActivity extends BaseActivity {
             layoutParams.height = screenWidth / 3 + dip2px(20);
             hor_recyclerview.setLayoutParams(layoutParams);
             hor_recyclerview.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            hor_recyclerview.setBackgroundResource(R.color.blue);
+//            hor_recyclerview.setBackgroundResource(R.color.blue);
 
 
             String text = data.get(position).getTitle();

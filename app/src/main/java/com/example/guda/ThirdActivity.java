@@ -66,6 +66,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private Button takeVideoBtn;
     private String videoPath;
     private String videoName;
+    private String video;
     private File file;
     private String ip;
 
@@ -82,6 +83,9 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_third);
         //隐藏系统自带标题栏
         getSupportActionBar().hide();
+        Intent intent = getIntent();
+        video = intent.getStringExtra("videoName");
+        Toast.makeText(ThirdActivity.this, video,Toast.LENGTH_SHORT).show();
         requestPermission();
         startService();//启动服务
         wifiShow();//弹窗wifi地址
@@ -114,7 +118,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(ThirdActivity.this,SecondActivity.class);
+                Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
@@ -213,7 +217,8 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         Uri videoUri;
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
             videoUri= FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
-        }else {
+        }
+        else {
             videoUri= Uri.fromFile(file);
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
@@ -225,7 +230,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
      */
     private void createVideoFile() {
         //设置图片文件名，以当前时间的毫秒值为名称
-        videoName = Calendar.getInstance().getTimeInMillis()+ ".mp4";
+        videoName = Calendar.getInstance().getTimeInMillis() + "_" + video + ".mp4";
         //创建图片文件
         file = new File(Environment.getExternalStorageDirectory()
                 + "/" + getPackageName() + "/", videoName);
@@ -234,6 +239,8 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         //按设置好的目录层级创建
         file.getParentFile().mkdir();
         file.setWritable(true);
+//        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+
     }
 
 
@@ -270,27 +277,30 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && null != data) {
-            Uri selectedVideo = data.getData();
+//            switch (requestCode) {
+//                case ALBUM_REQUEST_CODE:
+                    Uri selectedVideo = data.getData();
+                    String[] filePathColumn = {MediaStore.Video.Media.DATA, MediaStore.Images.Media.SIZE, MediaStore.Images.Media.DISPLAY_NAME};
 
-
-            String[] filePathColumn = { MediaStore.Video.Media.DATA, MediaStore.Images.Media.SIZE, MediaStore.Images.Media.DISPLAY_NAME};
-
-            Cursor cursor = getContentResolver().query(selectedVideo ,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            videoName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            videoPath = cursor.getString(columnIndex);
-            //显示出文件路径
-            Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
-
-            //自动跳转
+                    Cursor cursor = getContentResolver().query(selectedVideo,
+                            filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+                    videoName = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    videoPath = cursor.getString(columnIndex);
+                    //显示出文件路径
+                    Toast.makeText(ThirdActivity.this, videoPath, Toast.LENGTH_SHORT).show();
+                    cursor.close();
+                //自动跳转
 //            String uri = new String("http://%s:12345/files/%s");
 //            Intent intent = new Intent(Intent.ACTION_VIEW);
 //            intent.setData(Uri.parse(String.format(uri, ip, videoName)));
 //            startActivity(intent);
+//                case VIDEO_RESULT_CODE:
+//                    videoName = file.getName();
+//                    videoPath = file.getPath();
 
-            cursor.close();
+//            }
         }
     }
 
@@ -357,6 +367,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                         response.end();
                         RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
                     });
+
                 }
         );
 

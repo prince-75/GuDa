@@ -52,7 +52,7 @@ public class WebService extends Service {
     private static final String SVG_CONTENT_TYPE = "image/svg+xml";
     private static final String EOT_CONTENT_TYPE = "image/vnd.ms-fontobject";
     private static final String MP3_CONTENT_TYPE = "audio/mp3";
-    private static final String MP4_CONTENT_TYPE = "video/mpeg4";
+    private static final String MP4_CONTENT_TYPE = "raw/video/mpeg4";
     FileUploadHolder fileUploadHolder = new FileUploadHolder();
     private AsyncHttpServer server = new AsyncHttpServer();
     private AsyncServer mAsyncServer = new AsyncServer();

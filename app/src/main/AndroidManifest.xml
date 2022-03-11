@@ -57,6 +57,8 @@
             android:name=".PhotoBitmapUtils"
             tools:ignore="Instantiatable"
             android:launchMode="singleTask"/>
+        <activity android:name=".utils.VideoActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".TitleLayout"
             tools:ignore="Instantiatable"
@@ -65,10 +67,13 @@
             android:launchMode="singleTask"/>
         <activity android:name=".ThirdActivity"
             android:launchMode="singleTask"/>
+        <activity android:name=".ResultShowActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".SecondActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".MainActivity"
             android:launchMode="singleTask">
+
 <!--            intent-filter配置主活动-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

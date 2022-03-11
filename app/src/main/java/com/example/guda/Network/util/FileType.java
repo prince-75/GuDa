@@ -6,7 +6,7 @@ public class FileType {
             {".png", ".jpg", ".jpeg", ".gif", ".bmp"},
             // File Audio
             {".mp3", ".wav", ".ogg", "midi"},
-            // File Video
+            // File VideoActivity
             {".mp4", ".rmvb", ".avi", ".flv", ".3gp"},
             // File Web Text
             {".jsp", ".html", ".htm", ".js", ".php"},
