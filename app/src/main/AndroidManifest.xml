@@ -63,6 +63,8 @@
             android:name=".TitleLayout"
             tools:ignore="Instantiatable"
             android:launchMode="singleTask"/>
+        <activity android:name=".FiveActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".FourActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".ThirdActivity"

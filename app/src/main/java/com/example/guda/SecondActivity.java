@@ -29,8 +29,9 @@ public class SecondActivity extends BaseActivity {
         getSupportActionBar().hide();
         //导航栏按钮
         Button button1 = (Button) findViewById(R.id.button1);
-        Button button3 = (Button) findViewById(R.id.button3);
+//        Button button3 = (Button) findViewById(R.id.button3);
         Button button4 = (Button) findViewById(R.id.button4);
+        Button button5 = (Button) findViewById(R.id.button5);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -45,6 +46,13 @@ public class SecondActivity extends BaseActivity {
 //                startActivity(intent);
 //            }
 //        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this, FiveActivity.class);
+                startActivity(intent);
+            }
+        });
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
