@@ -29,7 +29,7 @@ public class FourActivity extends BaseActivity {
         //导航栏按钮
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
-//        Button button3 = (Button) findViewById(R.id.button3);
+        Button button3 = (Button) findViewById(R.id.button3);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
