@@ -12,15 +12,21 @@ import android.widget.ListView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.guda.recyclerviewcommunity.Community;
+import com.example.guda.recyclerviewcommunity.CommunityAdapter;
+import com.example.guda.recyclerviewcontants.Content;
 import com.example.guda.recyclerviewinformation.Information;
 import com.example.guda.recyclerviewinformation.InformationAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FiveActivity extends BaseActivity {
-
+    //瀑布流布局实列申明
+    private List<Community> communityList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,17 +66,37 @@ public class FiveActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
-
+        //RecyclerView滚动屏幕
+        initCommunity();//滚动数据初始化
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_contents);
+        StaggeredGridLayoutManager layoutManager=new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager((layoutManager));
+        CommunityAdapter adapter = new CommunityAdapter(communityList);
+        recyclerView.setAdapter(adapter);
 
     }
+    private void initCommunity(){
+        for(int i=0;i<2;i++){
+        Community yundongquanzi = new Community("运动圈子",R.drawable.gerenziliao);
+        communityList.add(yundongquanzi);
+        Community wodeziliao = new Community("我的资料",R.drawable.gerenziliao);
+        communityList.add(wodeziliao);
+        Community yundongquanzi1 = new Community("运动圈子",R.drawable.gerenziliao);
+        communityList.add(yundongquanzi1);
+        Community wodeziliao1 = new Community("我的资料",R.drawable.gerenziliao);
+        communityList.add(wodeziliao1);
+        }
+    }
 
-
-
-
-
-
-
+    private String getRandomLengthName(String name){
+        Random random = new Random();
+        int length=random.nextInt(20)+1;
+        StringBuilder builder = new StringBuilder();
+        for(int i=0;i<length;i++){
+            builder.append(name);
+        }
+        return builder.toString();
+    }
 
 
 }

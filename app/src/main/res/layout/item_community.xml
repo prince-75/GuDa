@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--规定FiveActivity中每一行数据的格式文件-->
+<!--这里是一张图片一句话的格式-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/community_image"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/community_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"/>
+
+
+
+
+</LinearLayout>
