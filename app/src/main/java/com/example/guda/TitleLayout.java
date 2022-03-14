@@ -21,17 +21,26 @@ public class TitleLayout extends LinearLayout {
     public TitleLayout(Context context, AttributeSet attrs){
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.activity_title_layout,this);
-        Button titleBack = (Button)findViewById(R.id.back);
-        Button titleEdit = (Button)findViewById(R.id.edit);
-        titleBack.setOnClickListener(new View.OnClickListener(){
+        Button titleAttention = (Button)findViewById(R.id.attention);
+        Button titleRelease = (Button)findViewById(R.id.release);
+        Button titleFind = (Button)findViewById(R.id.find);
+        titleAttention.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //销毁当前活动
-                ((Activity) getContext()).finish();
+                //销毁当前活动，实现返回功能
+//                ((Activity) getContext()).finish();
+                //文字弹窗
+                Toast.makeText(getContext(),"你的关注~就是我产出最大的动力~",Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        titleRelease.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getContext(),"你不会以为这个功能真的能用了吧",Toast.LENGTH_SHORT).show();
             }
         });
-
-        titleEdit.setOnClickListener(new View.OnClickListener(){
+        titleFind.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Toast.makeText(getContext(),"你点击了一下edit按钮" +

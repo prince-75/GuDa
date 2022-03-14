@@ -6,9 +6,15 @@
     <!--    android:background="@drawable/gudamine"-->
     <!--    android:orientation="horizontal"-->
 
+    <!--    自定义标题栏返回和编辑按钮-->
+        <com.example.guda.TitleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
     <!--滚动控件布局文件-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_contents"
+        android:id="@+id/recyclerview_community"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
