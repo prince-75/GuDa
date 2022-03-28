@@ -346,6 +346,10 @@ public class WebService extends Service {
             }
         }
 
+        public File getRecievedFile(){
+            return this.recievedFile;
+        }
+
         public void reset() {
             if (fileOutPutStream != null) {
                 try {

@@ -7,10 +7,22 @@
     <!--    android:orientation="horizontal"-->
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    ></TextView>
+    <VideoView
+        android:id="@+id/result_video"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        />
+    <!--    <Button-->
+
+    <!--        android:id="@+id/main_takeVideoBtn"-->
+    <!--        android:layout_width="fill_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:text="开始运动"-->
+    <!--        android:layout_below="@id/main_video"-->
+    <!--        android:layout_centerHorizontal="true"/>-->
+
     <!--    自定义标题栏返回和编辑按钮-->
     <!--    <com.example.guda.TitleLayout-->
     <!--        android:layout_width="match_parent"-->

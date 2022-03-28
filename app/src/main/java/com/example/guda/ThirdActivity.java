@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.guda.Network.Constants;
 import com.example.guda.Network.WebService;
@@ -69,12 +72,14 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
     private String video;
     private File file;
     private String ip;
+    private MutableLiveData<Long> receivedFile = new MutableLiveData<Long>();
 
     private AsyncHttpServer mServer = new AsyncHttpServer();
     private AsyncServer mAsyncServer = new AsyncServer();
     private MultipartFormDataBody mBody;
     private FileOutputStream mFileOutputStream;
     WebService.FileUploadHolder fileUploadHolder = new WebService.FileUploadHolder();
+
 
 
     @Override
@@ -131,6 +136,16 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         });
         //摄像头组件
         initViews();
+        receivedFile.observe(this, new Observer<Long>() {
+            @Override
+            public void onChanged(@Nullable Long time) {
+                File video = fileUploadHolder.getRecievedFile();
+                Intent intent = new Intent(ThirdActivity.this, ResultShowActivity.class);
+                intent.putExtra("videoUri", video.getAbsolutePath());
+                intent.putExtra("videoName", video.getName());
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -240,6 +255,10 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
         file.getParentFile().mkdir();
         file.setWritable(true);
 //        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+
+    }
+
+    private void PlayVideo(WebService.FileUploadHolder fileUpload){
 
     }
 
@@ -353,6 +372,7 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                                         String fileName = URLDecoder.decode(new String(bb
                                                 .getAllByteArray()), "UTF-8");
                                         fileUploadHolder.setFileName(fileName);
+
 //                                        Toast.makeText(ThirdActivity.this, fileName, Toast.LENGTH_SHORT).show();
                                     } catch (UnsupportedEncodingException e) {
                                         e.printStackTrace();
@@ -366,8 +386,10 @@ public class ThirdActivity extends BaseActivity implements View.OnClickListener 
                         fileUploadHolder.reset();
                         response.end();
                         RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
-                    });
+                        receivedFile.postValue(SystemClock.elapsedRealtime());
 
+                    });
+//                    PlayVideo(fileUploadHolder);
                 }
         );
 
